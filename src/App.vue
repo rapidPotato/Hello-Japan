@@ -1,7 +1,14 @@
 <template>
-  <div id="app">
-    <MapDisplay/>
-    <SideDisplay id ="SideDisplay"/>
+  <div id="app" class="container">
+    <div class="row d-flex justify-content-center"><h1>Hello, World!</h1></div>
+    <div class="row">
+      <div class="col-6">
+       <MapDisplay/>
+      </div>
+      <div class="col-6">
+        <SideDisplay id ="SideDisplay"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,10 +33,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
+  /* display: flex; */
 }
 
 #SideDisplay {
+  /* display: flex; */
 }
 
 #MapDisplay {

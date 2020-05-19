@@ -15,7 +15,7 @@
     <gmap-map
       :center="center"
       :zoom="5"
-      style="width:50%;  height: 500px;"
+      style="width:90%;  height: 500px;"
     >
       <gmap-marker
         :key="index"
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import cityData from "../../data/index.js"
+
 export default {
   name: "MapDisplay",
   data() {
@@ -45,10 +47,28 @@ export default {
     this.geolocate();
   },
 
+  created: function () {
+    console.log(cityData.locations)
+      for(const city of cityData.locations) {
+        console.log(city.lat,city.lon)
+        this.addMarkerByLatLon(city.lat,city.lon)
+      }
+  },
+
   methods: {
     // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place;
+    },
+    addMarkerByLatLon(newLat,newLon) {
+      console.log(newLat,newLon)
+      const marker = {
+        lat: newLat,
+        lng: newLon
+      }
+        this.markers.push({ position: marker });
+        this.places.push(this.currentPlace);
+        this.center = marker;
     },
     addMarker() {
       if (this.currentPlace) {
@@ -56,6 +76,7 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
+        console.log(marker)
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;
