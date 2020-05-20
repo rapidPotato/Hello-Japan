@@ -65,12 +65,11 @@ export default {
   },
 
   created: function () {
-    console.log(this.$store.state);
-    for (const city of cityData.locations) {
+    for (const city of cityData["locations"]) {
+      console.log(city)
       let weatherIcon =
         "http://localhost:8080" +
-        cityData["weather"][city.name]["weather"]["icon"];
-      console.log(weatherIcon, "in created");
+        this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
   },
@@ -81,12 +80,11 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-      let newWeather = cityData["weather"][newCity];
+      let newWeather = this.$store.state.initialWeather[newCity]["weather"];
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
-      console.log(cityName, weatherURL);
       let image = {
         url: weatherURL,
       };
