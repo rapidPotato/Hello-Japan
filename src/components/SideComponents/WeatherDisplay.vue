@@ -1,7 +1,15 @@
 <template>
   <div id="WeatherDisplay">
-    <h1> This is the Weather Display for {{this.$store.state.currentCity}} </h1>
-    <h6>{{ this.$store.state.currentWeather }}</h6>
+    <h4> Your Daily Weather Report for {{this.$store.state.currentCity}} </h4>
+    <h6>Current Temperature (C): {{ Math.round(this.$store.state.currentWeather.weather.temp) }} </h6>
+    <h6>Feels like (C): {{ Math.round(this.$store.state.currentWeather.weather.feelsLikeTemp) - 273 }} </h6>
+    <h6>Window Weather: {{ this.$store.state.currentWeather.weather.description }} </h6>
+    <h6>Sunrise & Sunset: {{  moment(this.$store.state.currentWeather.weather.sunrise, 'HH:mm').add(9, 'hours').format('HH:mm')}} & {{moment(this.$store.state.currentWeather.weather.sunset, 'HH:mm').add(9, 'hours').format('HH:mm')}} </h6>
+    <h6>Cloud Coverage (%): {{ this.$store.state.currentWeather.weather.clouds }} </h6>
+    <h6>Expected Preciptiation (mm/hr): {{ this.$store.state.currentWeather.weather.liquidEquivalentPrecipitationRate }} </h6>
+    <h6>Wind Speed (m/s) & Direction: {{ this.$store.state.currentWeather.weather.windSpeed }} from {{ this.$store.state.currentWeather.weather.windDirection }} </h6>
+    <h6>Visibility (km): {{ this.$store.state.currentWeather.weather.visibility }} </h6>
+    <h6>UV Index: {{ this.$store.state.currentWeather.weather.uvIndex }} </h6>
   </div>
 </template>
 
@@ -12,12 +20,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

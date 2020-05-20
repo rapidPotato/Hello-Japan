@@ -3,11 +3,12 @@ import Vuex from "vuex";
 import * as VueGoogleMaps from "vue2-google-maps";
 import { Tabs, Tab } from "vue-tabs-component";
 require("dotenv").config(require("find-config")(".env"));
-
+import moment from "moment";
 import App from "./App.vue";
 
 Vue.component("tabs", Tabs);
 Vue.component("tab", Tab);
+Vue.prototype.moment = moment;
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
