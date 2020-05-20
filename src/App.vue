@@ -19,6 +19,8 @@ import MapDisplay from "./components/MapDisplay.vue";
 import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default {
   name: "App",
@@ -66,8 +68,7 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-              "x-rapidapi-key":
-                "e10051b80dmshac2089cb21f7c15p141093jsn0dcd03ead866",
+              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
             },
           }
         )
@@ -118,6 +119,7 @@ export default {
     this.getWeatherInfo(this.location.Sapporon.lon, this.location.Sapporo.lat);
 
     this.$store.commit("updateInitialWeather", this.location);
+    console.log("location:", this.location);
   },
 };
 </script>

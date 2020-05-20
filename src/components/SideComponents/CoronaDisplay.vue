@@ -3,8 +3,9 @@
     <h1>This is the Corona Display</h1>
   </div>
 </template>
-
 <script>
+import axios from "axios";
+
 export default {
   name: "CoronaDisplay",
   data() {
