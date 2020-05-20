@@ -22,10 +22,16 @@ Vue.use(VueGoogleMaps, {
 
 const store = new Vuex.Store({
   state: {
-    currentCity: 'Tokyo'
+    currentCity: '',
+    currentWeather: {}
   },
   mutations: {
-
+    updateCity: (state, newCity) => {
+      state.currentCity = newCity
+    },
+    updateWeather: (state, newWeather) => {
+      state.currentWeather = newWeather
+    },
   }
 })
 
