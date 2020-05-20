@@ -3,12 +3,16 @@ import Vuex from 'vuex'
 import * as VueGoogleMaps from "vue2-google-maps";
 import {Tabs, Tab} from 'vue-tabs-component';
 require("dotenv").config(require('find-config')('.env'));
+<<<<<<< HEAD
 
+=======
+import moment from 'moment'
+>>>>>>> df2171819e04ac04a335bee879f89088a692ff9a
 import App from './App.vue'
 
 Vue.component("tabs", Tabs);
 Vue.component('tab', Tab);
-
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -23,7 +27,10 @@ Vue.use(VueGoogleMaps, {
 const store = new Vuex.Store({
   state: {
     currentCity: '',
-    currentWeather: {}
+    currentWeather: {},
+    currentHealth: {},
+    customCity: '',
+    customWeather: {}
   },
   mutations: {
     updateCity: (state, newCity) => {

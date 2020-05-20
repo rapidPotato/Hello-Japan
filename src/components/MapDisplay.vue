@@ -29,8 +29,11 @@
 
 <script>
 import cityData from "../../data/index.js"
+<<<<<<< HEAD
 import mapStyles from "../../public/mapStyles.json"
 // import { gmapApi } from "vue2-google-maps";
+=======
+>>>>>>> df2171819e04ac04a335bee879f89088a692ff9a
 
 export default {
   name: "MapDisplay",
@@ -64,10 +67,9 @@ export default {
 
   created: function () {
       for(const city of cityData.locations) {
-        let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
-        weatherIcon=weatherIcon[0].mapWeather
-        let weatherURL= this.mapWeatherObj[weatherIcon]
-        this.addMarkerByLatLon(city.lat,city.lon,weatherURL,city.name)
+        let weatherIcon = "http://localhost:8080" +  cityData['weather'][city.name]['weather']['icon']
+        console.log(weatherIcon, "in created")
+        this.addMarkerByLatLon(city.lat,city.lon,weatherIcon,city.name)
       }
   },
 
@@ -75,10 +77,20 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
+<<<<<<< HEAD
     // updateCity(newCity) {
       
     // },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
+=======
+    updateCity(newCity) {
+      let newWeather = cityData['weather'][newCity]
+      this.$store.commit("updateCity",newCity)
+      this.$store.commit("updateWeather",newWeather)
+    },
+    addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
+      console.log(cityName,weatherURL)
+>>>>>>> df2171819e04ac04a335bee879f89088a692ff9a
       let image = {
         url: weatherURL
       };

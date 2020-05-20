@@ -1,58 +1,154 @@
-[
-    {
-        "name": "Tokyo",
-        "mapWeather": "Sun",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+{
+    "Tokyo": {
+      "lon": 139.6503,
+      "lat": 35.6762,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04n.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "23.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Osaka",
-        "mapWeather": "Rain",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Osaka": {
+      "lon": 135.5023,
+      "lat": 34.6937,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/d01d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Sendai",
-        "mapWeather": "Clouds",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Naha": {
+      "lon": 127.679,
+      "lat": 26.2126,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Fukuoka",
-        "mapWeather": "Snow",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Sendai": {
+      "lon": 140.8694,
+      "lat": 38.2682,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Sapporo",
-        "mapWeather": "Snow",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Sapporo": {
+      "lon": 140.8694,
+      "lat": 38.2682,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Naha",
-        "mapWeather": "Lightning",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Fukuoka": {
+      "lon": 130.4017,
+      "lat": 33.5902,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Kyoto",
-        "mapWeather": "Rain",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Kyoto": {
+      "lon": 130.4017,
+      "lat": 33.5902,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     },
-    {
-        "name": "Niigata",
-        "mapWeather": "Clouds",
-        "currTemp": 65,
-        "minTemp": 60,
-        "maxTemp": 70
+    "Niigata": {
+      "lon": 130.4017,
+      "lat": 33.5902,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     }
-]
+}

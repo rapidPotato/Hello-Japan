@@ -28,7 +28,8 @@ export default {
     PageTitle
   },
   created: function () {
-      let weatherObj =  weather[0]
+      let weatherObj =  weather['Tokyo']
+      console.log(weatherObj)
       this.$store.commit("updateCity",'Tokyo')
       this.$store.commit("updateWeather",weatherObj)
 
