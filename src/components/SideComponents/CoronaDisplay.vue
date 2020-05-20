@@ -1,6 +1,7 @@
 <template>
   <div id="CoronaDisplay">
-    <h1> This is the Corona Display </h1>
+    <h1> This is the Corona 
+      Display </h1>
   </div>
 </template>
 

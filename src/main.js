@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as VueGoogleMaps from "vue2-google-maps";
 import {Tabs, Tab} from 'vue-tabs-component';
 require("dotenv").config(require('find-config')('.env'));
+console.log(process.env.VUE_APP_GAPIKEY)
 
 import App from './App.vue'
 
@@ -14,7 +15,7 @@ Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(VueGoogleMaps, {
   load: {
-    key: process.env.VUE_APP_GAPIKEY,
+    key: "AIzaSyBIqcBr2LBU_nJEzIk8-Tkhk40fqkUv5vs",
     libraries: "geometry,drawing,places" // necessary for places input
   }
 });
