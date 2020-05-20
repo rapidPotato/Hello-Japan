@@ -129,7 +129,7 @@ export default {
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .05);
-    padding: 4em 2em;
+    padding: 1.5em 2em;
   }
 }
 </style>
