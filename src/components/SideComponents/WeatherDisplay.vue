@@ -1,6 +1,7 @@
 <template>
   <div id="WeatherDisplay">
-    <h1> This is the WeatherDisplay Display </h1>
+    <h1> This is the Weather Display for {{this.$store.state.currentCity}} </h1>
+    <h6>{{ this.$store.state.currentWeather }}</h6>
   </div>
 </template>
 

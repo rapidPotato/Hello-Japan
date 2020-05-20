@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Tokyo",
+        "mapWeather": "Sun",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Osaka",
+        "mapWeather": "Rain",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Sendai",
+        "mapWeather": "Clouds",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Fukuoka",
+        "mapWeather": "Snow",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Sapporo",
+        "mapWeather": "Snow",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Naha",
+        "mapWeather": "Lightning",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    }
+]

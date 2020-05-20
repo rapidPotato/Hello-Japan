@@ -1,20 +1,38 @@
 <template>
-  <div id="app">
-    <MapDisplay/>
-    <SideDisplay id ="SideDisplay"/>
+  <div id="app" class="container">
+    <div class="row d-flex justify-content-center">
+      <PageTitle id="PageTitle" />
+    </div>
+    <div class="row">
+      <div class="col-6">
+       <MapDisplay/>
+      </div>
+      <div class="col-6">
+        <SideDisplay id ="SideDisplay"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import MapDisplay from './components/MapDisplay.vue'
 import SideDisplay from './components/SideDisplay.vue'
+import PageTitle from './components/PageTitle.vue'
+import { weather } from '../data'
 
 export default {
   name: 'App',
   components: {
     MapDisplay,
-    SideDisplay
-  }
+    SideDisplay,
+    PageTitle
+  },
+  created: function () {
+      let weatherObj =  weather[0]
+      this.$store.commit("updateCity",'Tokyo')
+      this.$store.commit("updateWeather",weatherObj)
+
+  },
 }
 </script>
 
@@ -26,17 +44,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-}
-
-#SideDisplay {
-}
-
-#MapDisplay {
   /* display: flex; */
 }
-
-/* From tabs module */
 
 .tabs-component {
   margin: 4em 0;

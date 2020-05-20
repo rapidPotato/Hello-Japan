@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "dotenv": "^8.2.0",
+    "find-config": "^1.0.0",
     "vue": "^2.6.11",
     "vue-tabs-component": "^1.5.0",
-    "vue2-google-maps": "^0.10.7"
+    "vue2-google-maps": "^0.10.7",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
