@@ -18,6 +18,7 @@
 import MapDisplay from './components/MapDisplay.vue'
 import SideDisplay from './components/SideDisplay.vue'
 import PageTitle from './components/PageTitle.vue'
+import { weather } from '../data'
 
 export default {
   name: 'App',
@@ -25,7 +26,13 @@ export default {
     MapDisplay,
     SideDisplay,
     PageTitle
-  }
+  },
+  created: function () {
+      let weatherObj =  weather[0]
+      this.$store.commit("updateCity",'Tokyo')
+      this.$store.commit("updateWeather",weatherObj)
+
+  },
 }
 </script>
 

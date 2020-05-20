@@ -30,6 +30,7 @@
 
 <script>
 import cityData from "../../data/index.js"
+
 // import { gmapApi } from "vue2-google-maps";
 
 export default {
@@ -61,7 +62,6 @@ export default {
   },
 
   created: function () {
-      console.log(this.$store.state)
       for(const city of cityData.locations) {
         let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
         weatherIcon=weatherIcon[0].mapWeather
@@ -76,8 +76,11 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-      console.log(newCity)
-      
+      console.log(this.$store.state.currentCity)
+      let newWeather = cityData.weather.filter(el => { return el.name === newCity})
+      this.$store.commit("updateCity",newCity)
+      this.$store.commit("updateWeather",newWeather)
+      console.log(this.$store.state.currentCity)
     },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
       console.log(cityName)
