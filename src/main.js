@@ -1,14 +1,17 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Vuex from 'vuex'
 import * as VueGoogleMaps from "vue2-google-maps";
 import {Tabs, Tab} from 'vue-tabs-component';
 require("dotenv").config(require('find-config')('.env'));
+
+import App from './App.vue'
 
 Vue.component("tabs", Tabs);
 Vue.component('tab', Tab);
 
 
 Vue.config.productionTip = false
+Vue.use(Vuex)
 Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_GAPIKEY,
@@ -16,6 +19,18 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
+
+const store = new Vuex.Store({
+  state: {
+    currentCity: 'Tokyo'
+  },
+  mutations: {
+
+  }
+})
+
+
 new Vue({
   render: h => h(App),
+  store: store
 }).$mount('#app')

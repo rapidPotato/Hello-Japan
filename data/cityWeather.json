@@ -1,7 +1,7 @@
 [
     {
         "name": "Tokyo",
-        "mapWeather": "Sunny",
+        "mapWeather": "Sun",
         "currTemp": 65,
         "minTemp": 60,
         "maxTemp": 70
@@ -21,15 +21,15 @@
         "maxTemp": 70
     },
     {
-        "name": "Snow",
-        "mapWeather": "Sunny",
+        "name": "Fukuoka",
+        "mapWeather": "Snow",
         "currTemp": 65,
         "minTemp": 60,
         "maxTemp": 70
     },
     {
         "name": "Naha",
-        "mapWeather": "lightning",
+        "mapWeather": "Lightning",
         "currTemp": 65,
         "minTemp": 60,
         "maxTemp": 70

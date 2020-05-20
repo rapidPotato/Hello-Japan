@@ -14,14 +14,15 @@
     <br>
     <gmap-map
       :center="center"
-      :zoom="5"
+      :zoom="4"
       style="width:90%;  height: 500px;"
     >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        @click="center=m.position"
+        :icon = "{url: m.icon.url, anchor:anchor,origin:origin,scaledSize:scaledSize,size:size }"
+        @click="center=m.position; updateCity(m.cityName)"
       ></gmap-marker>
     </gmap-map>
   </div>
@@ -29,6 +30,7 @@
 
 <script>
 import cityData from "../../data/index.js"
+// import { gmapApi } from "vue2-google-maps";
 
 export default {
   name: "MapDisplay",
@@ -36,10 +38,21 @@ export default {
     return {
       // default to Montreal to keep it simple
       // change this to whatever makes sense
+      scaledSize: {width: 30, height: 30, f: 'px', b: 'px',},
+      size: {width: 60, height: 90, f: 'px', b: 'px'},
+      origin: {x: 0, y: 0},
+      anchor: {x: 15, y: 15},
       center: { lat: 39.5, lng: 135.7 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      mapWeatherObj: {
+        Sun: "http://localhost:8080/icons/30x30/wi-day-sunny.svg",
+        Snow: 'http://localhost:8080/icons/30x30/wi-snow.svg' ,
+        Rain: "http://localhost:8080/icons/30x30/wi-rain.svg",
+        Lightning: 'http://localhost:8080/icons/30x30/wi-lightning.svg',
+        Clouds: "http://localhost:8080/icons/30x30/wi-day-cloudy.svg",
+      }
     };
   },
 
@@ -48,10 +61,12 @@ export default {
   },
 
   created: function () {
-    console.log(cityData.locations)
+      console.log(this.$store.state)
       for(const city of cityData.locations) {
-        console.log(city.lat,city.lon)
-        this.addMarkerByLatLon(city.lat,city.lon)
+        let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
+        weatherIcon=weatherIcon[0].mapWeather
+        let weatherURL= this.mapWeatherObj[weatherIcon]
+        this.addMarkerByLatLon(city.lat,city.lon,weatherURL,city.name)
       }
   },
 
@@ -60,13 +75,27 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    addMarkerByLatLon(newLat,newLon) {
-      console.log(newLat,newLon)
+    updateCity(newCity) {
+      console.log(newCity)
+      
+    },
+    addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
+      console.log(cityName)
+      let image = {
+        url: weatherURL
+        // // This marker is 20 pixels wide by 32 pixels high.
+        // size: new google.maps.Size(20, 32),
+        // // The origin for this image is (0, 0).
+        // origin: new google.maps.Point(0, 0),
+        // // The anchor for this image is the base of the flagpole at (0, 32).
+        // anchor: new google.maps.Point(0, 32)
+      };
+
       const marker = {
         lat: newLat,
         lng: newLon
       }
-        this.markers.push({ position: marker });
+        this.markers.push({ position: marker,icon:image,cityName:cityName});
         this.places.push(this.currentPlace);
         this.center = marker;
     },
@@ -76,7 +105,6 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
-        console.log(marker)
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;

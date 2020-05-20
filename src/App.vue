@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="container">
-    <div class="row d-flex justify-content-center"><h1>Hello, World!</h1></div>
+    <div class="row d-flex justify-content-center">
+      <PageTitle id="PageTitle" />
+    </div>
     <div class="row">
       <div class="col-6">
        <MapDisplay/>
@@ -15,12 +17,14 @@
 <script>
 import MapDisplay from './components/MapDisplay.vue'
 import SideDisplay from './components/SideDisplay.vue'
+import PageTitle from './components/PageTitle.vue'
 
 export default {
   name: 'App',
   components: {
     MapDisplay,
-    SideDisplay
+    SideDisplay,
+    PageTitle
   }
 }
 </script>
@@ -35,16 +39,6 @@ export default {
   margin-top: 60px;
   /* display: flex; */
 }
-
-#SideDisplay {
-  /* display: flex; */
-}
-
-#MapDisplay {
-  /* display: flex; */
-}
-
-/* From tabs module */
 
 .tabs-component {
   margin: 4em 0;
