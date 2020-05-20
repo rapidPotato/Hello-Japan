@@ -1,45 +1,50 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 import * as VueGoogleMaps from "vue2-google-maps";
-import {Tabs, Tab} from 'vue-tabs-component';
-require("dotenv").config(require('find-config')('.env'));
-import moment from 'moment'
-import App from './App.vue'
+import { Tabs, Tab } from "vue-tabs-component";
+require("dotenv").config(require("find-config")(".env"));
+import moment from "moment";
+import App from "./App.vue";
 
 Vue.component("tabs", Tabs);
-Vue.component('tab', Tab);
-Vue.prototype.moment = moment
+Vue.component("tab", Tab);
+Vue.prototype.moment = moment;
 
-Vue.config.productionTip = false
-Vue.use(Vuex)
+Vue.config.productionTip = false;
+Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_GAPIKEY,
-    libraries: "geometry,drawing,places" // necessary for places input
-  }
+    libraries: "geometry,drawing,places", // necessary for places input
+  },
 });
-
 
 const store = new Vuex.Store({
   state: {
-    currentCity: '',
+    currentCity: "",
     currentWeather: {},
-    currentHealth: {},
-    customCity: '',
-    customWeather: {}
+    initialWeather: {},
   },
   mutations: {
     updateCity: (state, newCity) => {
-      state.currentCity = newCity
+      state.currentCity = newCity;
     },
     updateWeather: (state, newWeather) => {
-      state.currentWeather = newWeather
+      state.currentWeather = newWeather;
     },
-  }
-})
-
+    updateInitialWeather: (state, weatherObj) => {
+      state.initialWeather = weatherObj;
+    },
+  },
+});
 
 new Vue({
+<<<<<<< HEAD
   render: h => h(App),
   store: store
 }).$mount('#app')
+=======
+  render: (h) => h(App),
+  store: store,
+}).$mount("#app");
+>>>>>>> 9f3b8ad2ed7023c560229ff8e8cd2101e4f9df37

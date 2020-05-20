@@ -5,36 +5,116 @@
     </div>
     <div class="row">
       <div class="col-6">
-       <MapDisplay/>
+        <MapDisplay />
       </div>
       <div class="col-6">
-        <SideDisplay id ="SideDisplay"/>
+        <SideDisplay id="SideDisplay" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MapDisplay from './components/MapDisplay.vue'
-import SideDisplay from './components/SideDisplay.vue'
-import PageTitle from './components/PageTitle.vue'
-import { weather } from '../data'
+import MapDisplay from "./components/MapDisplay.vue";
+import SideDisplay from "./components/SideDisplay.vue";
+import PageTitle from "./components/PageTitle.vue";
+import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     MapDisplay,
     SideDisplay,
-    PageTitle
+    PageTitle,
   },
-  created: function () {
-      let weatherObj =  weather['Tokyo']
-      console.log(weatherObj)
-      this.$store.commit("updateCity",'Tokyo')
-      this.$store.commit("updateWeather",weatherObj)
+  data() {
+    return {
+      location: {
+        Tokyo: {
+          lon: 139.6503,
+          lat: 35.6762,
+        },
+        Osaka: {
+          lon: 135.5023,
+          lat: 34.6937,
+        },
+        Naha: {
+          lon: 127.679,
+          lat: 26.2126,
+        },
+        Sendai: {
+          lon: 140.8694,
+          lat: 38.2682,
+        },
+        Fukuoka: {
+          lon: 130.4017,
+          lat: 33.5902,
+        },
+      },
+    };
+  },
 
+  methods: {
+    getWeatherInfo(lon, lat) {
+      axios
+        .get(
+          `https://weatherbit-v1-mashape.p.rapidapi.com/current?units=S&lang=undefined&lon=${lon}&lat=${lat}`,
+          {
+            headers: {
+              "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+              "x-rapidapi-key":
+                "e10051b80dmshac2089cb21f7c15p141093jsn0dcd03ead866",
+            },
+          }
+        )
+        .then((response) => {
+          const actralDataObject = response.data.data[0];
+          this.location[actralDataObject.city_name].weather =
+            actralDataObject.weather;
+          this.location[
+            actralDataObject.city_name
+          ].weather.icon = `../../public/icons/${
+            this.location[actralDataObject.city_name].weather.icon
+          }.png`;
+          this.location[actralDataObject.city_name].weather.temp = (
+            actralDataObject.temp - 273.15
+          ).toFixed(2);
+          this.location[actralDataObject.city_name].weather.clouds =
+            actralDataObject.clouds;
+          this.location[actralDataObject.city_name].weather.windSpeed =
+            actralDataObject.wind_spd;
+          this.location[actralDataObject.city_name].weather.windDirection =
+            actralDataObject.wind_cdir_full;
+          this.location[actralDataObject.city_name].weather.visibility =
+            actralDataObject.vis;
+          this.location[actralDataObject.city_name].weather.uvIndex =
+            actralDataObject.uv;
+          this.location[
+            actralDataObject.city_name
+          ].weather.liquidEquivalentPrecipitationRate = actralDataObject.precip;
+          this.location[actralDataObject.city_name].weather.sunrise =
+            actralDataObject.sunrise;
+          this.location[actralDataObject.city_name].weather.sunset =
+            actralDataObject.sunset;
+          this.location[actralDataObject.city_name].weather.feelsLikeTemp =
+            actralDataObject.app_temp;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
-}
+
+  created: function () {
+    this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
+    this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
+    this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
+    this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
+    this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
+
+    this.$store.commit("updateInitialWeather", this.location);
+  },
+};
 </script>
 
 <style>
@@ -45,7 +125,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  /* display: flex; */
 }
 
 .tabs-component {
@@ -98,9 +177,9 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 3px 3px 0 0;
-    margin-right: .5em;
+    margin-right: 0.5em;
     transform: translateY(2px);
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
   }
 
   .tabs-component-tab.is-active {
@@ -114,7 +193,7 @@ export default {
   align-items: center;
   color: inherit;
   display: flex;
-  padding: .75em 1em;
+  padding: 0.75em 1em;
   text-decoration: none;
 }
 
@@ -128,7 +207,7 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     padding: 4em 2em;
   }
 }
