@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as VueGoogleMaps from "vue2-google-maps";
 import {Tabs, Tab} from 'vue-tabs-component';
 require("dotenv").config(require('find-config')('.env'));
+console.log(process.env.VUE_APP_GAPIKEY)
 
 import App from './App.vue'
 

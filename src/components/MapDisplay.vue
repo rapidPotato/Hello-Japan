@@ -47,11 +47,11 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-        Sun: "http://localhost:8080/icons/30x30/wi-day-sunny.svg",
-        Snow: 'http://localhost:8080/icons/30x30/wi-snow.svg' ,
-        Rain: "http://localhost:8080/icons/30x30/wi-rain.svg",
-        Lightning: 'http://localhost:8080/icons/30x30/wi-lightning.svg',
-        Clouds: "http://localhost:8080/icons/30x30/wi-day-cloudy.svg",
+        Sun: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
+        Snow: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-snow.svg' ,
+        Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
+        Lightning: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg',
+        Clouds: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
       }
     };
   },
