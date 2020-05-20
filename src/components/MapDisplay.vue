@@ -30,7 +30,6 @@
 
 <script>
 import cityData from "../../data/index.js"
-
 // import { gmapApi } from "vue2-google-maps";
 
 export default {
@@ -53,88 +52,7 @@ export default {
         Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
         Lightning: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg',
         Clouds: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
-      },
-      styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
-            },
-            {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
-            }
-          ]
-      
+      }
     };
   },
 
@@ -143,6 +61,7 @@ export default {
   },
 
   created: function () {
+      console.log(this.$store.state)
       for(const city of cityData.locations) {
         let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
         weatherIcon=weatherIcon[0].mapWeather
@@ -157,11 +76,8 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-      console.log(this.$store.state.currentCity)
-      let newWeather = cityData.weather.filter(el => { return el.name === newCity})
-      this.$store.commit("updateCity",newCity)
-      this.$store.commit("updateWeather",newWeather)
-      console.log(this.$store.state.currentCity)
+      console.log(newCity)
+      
     },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
       console.log(cityName)

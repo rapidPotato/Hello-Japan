@@ -15,7 +15,7 @@ Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(VueGoogleMaps, {
   load: {
-    key: process.env.VUE_APP_GAPIKEY,
+    key: "AIzaSyBIqcBr2LBU_nJEzIk8-Tkhk40fqkUv5vs",
     libraries: "geometry,drawing,places" // necessary for places input
   }
 });
