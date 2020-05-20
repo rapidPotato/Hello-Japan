@@ -46,11 +46,11 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-        Sun: "http://localhost:8080/icons/30x30/wi-day-sunny.svg",
-        Snow: 'http://localhost:8080/icons/30x30/wi-snow.svg' ,
-        Rain: "http://localhost:8080/icons/30x30/wi-rain.svg",
-        Lightning: 'http://localhost:8080/icons/30x30/wi-lightning.svg',
-        Clouds: "http://localhost:8080/icons/30x30/wi-day-cloudy.svg",
+        Sun: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
+        Snow: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-snow.svg' ,
+        Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
+        Lightning: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg',
+        Clouds: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
       }
     };
   },
@@ -60,6 +60,7 @@ export default {
   },
 
   created: function () {
+      console.log(this.$store.state)
       for(const city of cityData.locations) {
         let weatherIcon = "http://localhost:8080" +  cityData['weather'][city.name]['weather']['icon']
         console.log(weatherIcon, "in created")
@@ -73,14 +74,9 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-      console.log('In Update City',newCity)
-      // console.log(cityData['weather'][newCity]['weather'], "In Update City")
       let newWeather = cityData['weather'][newCity]
-      console.log(newWeather, 'New Weather')
       this.$store.commit("updateCity",newCity)
       this.$store.commit("updateWeather",newWeather)
-      // console.log(this.$store.state.currentCity)
-      // console.log(this.$store.state.currentWeather)
     },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
       console.log(cityName,weatherURL)
