@@ -18,8 +18,6 @@
 import MapDisplay from "./components/MapDisplay.vue";
 import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
-// import { weather } from "../data";
-// import cityData from "../../data/index.js";
 import axios from "axios";
 
 export default {
@@ -31,9 +29,6 @@ export default {
   },
   data() {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
-
       location: {
         Tokyo: {
           lon: 139.6503,
@@ -130,7 +125,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  /* display: flex; */
 }
 
 .tabs-component {
