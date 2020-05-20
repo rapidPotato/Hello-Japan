@@ -1,16 +1,48 @@
 <template>
   <div id="CoronaDisplay">
-    <h1> This is the Corona 
-      Display </h1>
+    <h1>This is the Corona Display</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CoronaDisplay'
-}
+  name: "CoronaDisplay",
+  data() {
+    return {
+      info: {},
+    };
+  },
+
+  methods: {
+    getCoronaInfo() {
+      axios
+        .get(
+          "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
+          {
+            headers: {
+              "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
+              "x-rapidapi-key":
+                "ee62d00b17msh2828a661daa5b94p12ebe1jsna0e96c79cfd9",
+            },
+          }
+        )
+        .then((response) => {
+          this.info.total_cases = response.data.data.summary.total_cases;
+          this.info.deaths = response.data.data.summary.deaths;
+          this.info.death_ratio =
+            parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  created: function () {
+    this.getCoronaInfo();
+    this.$store.commit("updateCoronaInfo", this.info);
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

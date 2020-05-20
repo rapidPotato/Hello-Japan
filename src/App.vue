@@ -50,6 +50,10 @@ export default {
           lon: 130.4017,
           lat: 33.5902,
         },
+        Sapporo: {
+          lat: 43.0618,
+          lon: 141.3545,
+        },
       },
     };
   },
@@ -111,6 +115,7 @@ export default {
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
     this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
     this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
+    this.getWeatherInfo(this.location.Sapporon.lon, this.location.Sapporo.lat);
 
     this.$store.commit("updateInitialWeather", this.location);
   },
