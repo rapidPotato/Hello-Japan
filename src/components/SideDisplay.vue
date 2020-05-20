@@ -1,6 +1,5 @@
 <template>
   <div id="SideDisplay">
-    <h1> This is the Side Display </h1>
     <tabs>
       <tab name = 'Weather'>
         <WeatherDisplay/>

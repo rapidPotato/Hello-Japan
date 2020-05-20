@@ -40,5 +40,19 @@
         "currTemp": 65,
         "minTemp": 60,
         "maxTemp": 70
+    },
+    {
+        "name": "Kyoto",
+        "mapWeather": "Rain",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
+    },
+    {
+        "name": "Niigata",
+        "mapWeather": "Clouds",
+        "currTemp": 65,
+        "minTemp": 60,
+        "maxTemp": 70
     }
 ]

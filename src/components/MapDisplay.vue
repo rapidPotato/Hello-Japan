@@ -1,27 +1,26 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
+      <h5 >Search and add a pin</h5>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click="addMarkerFromSearch">Add</button>
       </label>
-      <br/>
-
     </div>
     <br>
     <gmap-map
       :center="center"
       :zoom="4"
       style="width:90%;  height: 500px;"
+      :options="options"
     >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        :icon = "{url: m.icon.url, anchor:anchor,origin:origin,scaledSize:scaledSize,size:size }"
+        :icon = "{url: m.icon.url, anchor: anchor, origin: origin, scaledSize: scaledSize, size:size }"
         @click="center=m.position; updateCity(m.cityName)"
       ></gmap-marker>
     </gmap-map>
@@ -30,6 +29,7 @@
 
 <script>
 import cityData from "../../data/index.js"
+import mapStyles from "../../public/mapStyles.json"
 // import { gmapApi } from "vue2-google-maps";
 
 export default {
@@ -52,16 +52,17 @@ export default {
         Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
         Lightning: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg',
         Clouds: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
+      },
+      options: {
+        styles: mapStyles
       }
     };
   },
-
-  mounted() {
-    this.geolocate();
-  },
+  // mounted() {
+  //   this.geolocate();
+  // },
 
   created: function () {
-      console.log(this.$store.state)
       for(const city of cityData.locations) {
         let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
         weatherIcon=weatherIcon[0].mapWeather
@@ -71,41 +72,43 @@ export default {
   },
 
   methods: {
-    // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place;
     },
-    updateCity(newCity) {
-      console.log(newCity)
+    // updateCity(newCity) {
       
-    },
+    // },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
-      console.log(cityName)
       let image = {
         url: weatherURL
-        // // This marker is 20 pixels wide by 32 pixels high.
-        // size: new google.maps.Size(20, 32),
-        // // The origin for this image is (0, 0).
-        // origin: new google.maps.Point(0, 0),
-        // // The anchor for this image is the base of the flagpole at (0, 32).
-        // anchor: new google.maps.Point(0, 32)
       };
 
       const marker = {
         lat: newLat,
         lng: newLon
       }
-        this.markers.push({ position: marker,icon:image,cityName:cityName});
+        this.markers.push({ position: marker, icon: image, cityName: cityName});
         this.places.push(this.currentPlace);
         this.center = marker;
     },
-    addMarker() {
+    addMarkerFromSearch() {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
-        this.markers.push({ position: marker });
+        // console.log(marker.lat, marker.lng)
+
+        // look up weather so we can convert it to icon
+        //TODO: should call weather API for weather icon code
+        const weatherIcon = cityData.weather.filter(city => city.name === this.currentPlace.name)[0].mapWeather;
+        //TODO: should use icon code from api to get image
+        const weatherURL= this.mapWeatherObj[weatherIcon]
+        const image = {
+          url: weatherURL
+        }
+
+        this.markers.push({ position: marker, icon: image, cityName: this.currentPlace.name });
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
@@ -118,7 +121,7 @@ export default {
           lng: position.coords.longitude
         };
       });
-    }
+    },
   }
 };
 </script>
