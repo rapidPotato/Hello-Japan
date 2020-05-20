@@ -30,7 +30,6 @@
 
 <script>
 import cityData from "../../data/index.js"
-// import { gmapApi } from "vue2-google-maps";
 
 export default {
   name: "MapDisplay",
@@ -63,10 +62,9 @@ export default {
   created: function () {
       console.log(this.$store.state)
       for(const city of cityData.locations) {
-        let weatherIcon = cityData.weather.filter(el => { return el.name === city.name})
-        weatherIcon=weatherIcon[0].mapWeather
-        let weatherURL= this.mapWeatherObj[weatherIcon]
-        this.addMarkerByLatLon(city.lat,city.lon,weatherURL,city.name)
+        let weatherIcon = "http://localhost:8080" +  cityData['weather'][city.name]['weather']['icon']
+        console.log(weatherIcon, "in created")
+        this.addMarkerByLatLon(city.lat,city.lon,weatherIcon,city.name)
       }
   },
 
@@ -76,19 +74,14 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-      console.log(newCity)
-      
+      let newWeather = cityData['weather'][newCity]
+      this.$store.commit("updateCity",newCity)
+      this.$store.commit("updateWeather",newWeather)
     },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
-      console.log(cityName)
+      console.log(cityName,weatherURL)
       let image = {
         url: weatherURL
-        // // This marker is 20 pixels wide by 32 pixels high.
-        // size: new google.maps.Size(20, 32),
-        // // The origin for this image is (0, 0).
-        // origin: new google.maps.Point(0, 0),
-        // // The anchor for this image is the base of the flagpole at (0, 32).
-        // anchor: new google.maps.Point(0, 32)
       };
 
       const marker = {
