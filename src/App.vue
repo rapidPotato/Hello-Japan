@@ -68,8 +68,10 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+              "x-rapidapi-key": "process.env.VUE_APP_RAKUTEN_KEY",
             },
+
+            //process.env.VUE_APP_RAKUTEN_KEY
           }
         )
         .then((response) => {
