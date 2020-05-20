@@ -24,6 +24,7 @@ const store = new Vuex.Store({
     currentCity: "",
     currentWeather: {},
     initialWeather: {},
+    coronaInfo: {},
   },
   mutations: {
     updateCity: (state, newCity) => {
@@ -34,6 +35,10 @@ const store = new Vuex.Store({
     },
     updateInitialWeather: (state, weatherObj) => {
       state.initialWeather = weatherObj;
+    },
+    updateCoronaInfo: (state, coronaInfoObj) => {
+      state.coronaInfo = coronaInfoObj;
+      console.log("####CORONA INFO", state.coronaInfo);
     },
   },
 });
