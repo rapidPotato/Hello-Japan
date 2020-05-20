@@ -29,11 +29,8 @@
 
 <script>
 import cityData from "../../data/index.js"
-<<<<<<< HEAD
 import mapStyles from "../../public/mapStyles.json"
 // import { gmapApi } from "vue2-google-maps";
-=======
->>>>>>> df2171819e04ac04a335bee879f89088a692ff9a
 
 export default {
   name: "MapDisplay",
@@ -50,11 +47,11 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-        Sun: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
-        Snow: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-snow.svg' ,
-        Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
-        Lightning: 'https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg',
-        Clouds: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
+        Sun: "http://localhost:8081/public/icons/30x30/wi-day-sunny.svg",
+        Snow: "http://localhost:8081/public/icons/30x30/wi-snow.svg",
+        Rain: "http://localhost:8081/public/icons/weatherbitIcons/r01d.png",
+        Lightning: "http://localhost:8081/public/icons/30x30/wi-lightning.svg",
+        Clouds: "http://localhost:8081/public/icons/30x30/wi-day-cloudy.svg",
       },
       options: {
         styles: mapStyles
@@ -77,12 +74,6 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-<<<<<<< HEAD
-    // updateCity(newCity) {
-      
-    // },
-    addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
-=======
     updateCity(newCity) {
       let newWeather = cityData['weather'][newCity]
       this.$store.commit("updateCity",newCity)
@@ -90,7 +81,6 @@ export default {
     },
     addMarkerByLatLon(newLat,newLon,weatherURL,cityName) {
       console.log(cityName,weatherURL)
->>>>>>> df2171819e04ac04a335bee879f89088a692ff9a
       let image = {
         url: weatherURL
       };
