@@ -52,7 +52,6 @@ const store = new Vuex.Store({
     },
     updateRestaurantInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
-      console.log("####Retaurant Info", state.currentRestaurantInfo);
     },
   },
 });

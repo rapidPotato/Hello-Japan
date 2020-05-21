@@ -65,22 +65,16 @@ export default {
       },
     };
   },
-  // mounted() {
-  //   this.geolocate();
-  // },
 
   mounted() {
     this.geolocate();
   },
 
   created: function() {
-    // console.log(this.$store.state.initialWeather)
     for (const city of cityData["locations"]) {
-      // console.log(city,'in map.vue created')
       let weatherIcon =
         "http://localhost:8080" +
         cityData["weather"][city.name]["weather"]["icon"];
-      console.log(weatherIcon, "in created");
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
   },
@@ -92,14 +86,11 @@ export default {
     updateCity(newCity) {
       let newWeather = this.$store.state.initialWeather[newCity];
       let newRestaurant = this.$store.state.initialRestaurantInfo[newCity];
-      console.log(this.$store.state.initialRestaurantInfo);
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
       this.$store.commit("updateRestaurantInfo", newRestaurant);
-      // console.log(this.$store.state.currentWeather)
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
-      console.log(cityName, weatherURL);
       let image = {
         url: weatherURL,
       };
@@ -118,7 +109,6 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng(),
         };
-        // console.log(marker.lat, marker.lng)
 
         // look up weather so we can convert it to icon
         //TODO: should call weather API for weather icon code

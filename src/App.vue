@@ -24,7 +24,6 @@ import PageTitle from "./components/PageTitle.vue";
 import Clock from "./components/Clock.vue";
 import axios from "axios";
 import "dotenv/config";
-// import cityData from "../data/index.js";
 
 export default {
   name: "App",
@@ -36,7 +35,7 @@ export default {
   },
   data() {
     return {
-      // If you update this please update data\cityLocations.json
+      // If you update this please update data/cityLocations.json
       location: {
         Tokyo: {
           lon: 139.6503,
@@ -77,13 +76,12 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
             },
           }
         )
         .then((response) => {
           const actralDataObject = response.data.data[0];
-          // console.log("####", actralDataObject);
           let result = {};
           result = actralDataObject.weather;
 
@@ -101,7 +99,6 @@ export default {
 
           result.icon = `/icons/${result.icon}.png`;
           this.location.weather = result;
-          console.log(result);
         })
         .catch((err) => {
           console.log(err);
@@ -116,7 +113,7 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
             },
           }
         )
@@ -142,7 +139,7 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
             },
           }
         )
@@ -165,8 +162,7 @@ export default {
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
     this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
     this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
-    this.getWeatherInfo(this.location.Sapporon.lon, this.location.Sapporo.lat);
-    console.log("location:", this.location);
+    this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
     this.$store.commit("updateInitialWeather", this.location);
 
     // fetch restaurant info
@@ -176,7 +172,6 @@ export default {
     this.getRestaurantsInfo("Sendai", 298249);
     this.getRestaurantsInfo("Fukuoka", 14135118);
     this.getRestaurantsInfo("Sapporo", 298560);
-    console.log("this.restaurantInfo:", this.restaurantsInfo);
     this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
 
     // fetch corona info
@@ -263,8 +258,9 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 00.05);
-    padding: 1.5em 2em;
+    <<<<<<<headbox-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    =======box-shadow: 0 0 10px rgba(0, 0, 0, 00.05);
+    >>>>>>>df42e904cf925bc5671df082c86b4ec3a2df35e8padding: 1.5em 2em;
   }
 }
 </style>
