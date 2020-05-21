@@ -4,6 +4,9 @@
       <PageTitle id="PageTitle" />
     </div>
     <div class="row">
+      <Clock id="Clock" />
+    </div>
+    <div class="row">
       <div class="col-6">
         <MapDisplay />
       </div>
@@ -18,6 +21,7 @@
 import MapDisplay from "./components/MapDisplay.vue";
 import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
+import Clock from './components/Clock.vue';
 import axios from "axios";
 import cityData from "../data/index.js";
 
@@ -28,6 +32,7 @@ export default {
     MapDisplay,
     SideDisplay,
     PageTitle,
+    Clock
   },
   data() {
     return {
@@ -140,7 +145,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .tabs-component {

@@ -45,11 +45,11 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-        Sun: "http://localhost:8081/public/icons/30x30/wi-day-sunny.svg",
-        Snow: "http://localhost:8081/public/icons/30x30/wi-snow.svg",
-        Rain: "http://localhost:8081/public/icons/weatherbitIcons/r01d.png",
-        Lightning: "http://localhost:8081/public/icons/30x30/wi-lightning.svg",
-        Clouds: "http://localhost:8081/public/icons/30x30/wi-day-cloudy.svg"
+        Sun: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
+        Snow: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-snow.svg",
+        Rain: "https://hellojapanapp-cc.herokuapp.com/icons/weatherbitIcons/r01d.png",
+        Lightning: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
+        Clouds: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg"
       },
       options: {
         styles: mapStyles
@@ -60,20 +60,14 @@ export default {
   //   this.geolocate();
   // },
 
-<<<<<<< HEAD
-  created: function() {
-    console.log(this.$store.state);
-    for (const city of cityData.locations) {
-=======
   mounted() {
     this.geolocate();
   },
 
-  created: function () {
+  created: function() {
     // console.log(this.$store.state.initialWeather)
     for (const city of cityData["locations"]) {
       // console.log(city,'in map.vue created')
->>>>>>> e5d0072edcdb7e29d97537000ee7e39305a404f9
       let weatherIcon =
         "http://localhost:8080" +
         cityData["weather"][city.name]["weather"]["icon"];
@@ -87,13 +81,9 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
-<<<<<<< HEAD
-      let newWeather = cityData["weather"][newCity];
-=======
       let newWeather = this.$store.state.initialWeather[newCity];
       let newRestaurant = this.$store.state.initialRestaurantInfo[newCity];
-      console.log(this.$store.state.initialRestaurantInfo)
->>>>>>> e5d0072edcdb7e29d97537000ee7e39305a404f9
+      console.log(this.$store.state.initialRestaurantInfo);
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
       this.$store.commit("updateRestaurantInfo", newRestaurant);
