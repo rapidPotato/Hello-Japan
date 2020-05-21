@@ -62,7 +62,7 @@ export default {
           lon: 141.3545,
         },
       },
-      // this if for restaurant data
+      // this is for restaurant data
       restaurantsInfo: {},
     };
   },
