@@ -93,7 +93,7 @@ export default {
       let newRestaurant = this.$store.state.initialRestaurantInfo[newCity];
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
-      this.$store.commit("updateRestaurantInfo", newRestaurant);
+      this.$store.commit("updateCurrentRestaurantInfo", newRestaurant);
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
