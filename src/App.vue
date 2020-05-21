@@ -19,6 +19,8 @@ import MapDisplay from "./components/MapDisplay.vue";
 import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
 import axios from "axios";
+import cityData from "../data/index.js";
+
 
 export default {
   name: "App",
@@ -50,6 +52,10 @@ export default {
         Fukuoka: {
           lon: 130.4017,
           lat: 33.5902,
+        },
+        Sapporo: {
+          lat: 43.0618,
+          lon: 141.3545,
         },
       },
     };
@@ -112,8 +118,16 @@ export default {
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
     this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
     this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
-    this.$store.commit("updateInitialWeather", this.location);
-    console.log(this.$store.state.initialWeather)
+    this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
+    // this.$store.commit("updateInitialWeather", this.location);
+    // this.$store.commit("updateWeather",this.location['Tokyo'])
+    this.$store.commit("updateInitialWeather", cityData['weather']);
+    this.$store.commit("updateCity",'Tokyo')
+    this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
+    this.$store.commit("updateRestaurantInfo",cityData['restaurants']['Tokyo'])
+    this.$store.commit("updateInitialRestaurantInfo",cityData['restaurants'])
+    console.log(cityData['restaurants']['Tokyo'])
+    console.log(this.$store.state)
   },
 };
 </script>
