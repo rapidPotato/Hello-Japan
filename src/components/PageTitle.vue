@@ -1,6 +1,6 @@
 <template>
   <div id="PageTitle">
-    <h1> Hello, World! </h1>
+    <h1> Hello, Japan! </h1>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
 <style scoped>
 #PageTitle {
     border-bottom: 2px solid rgb(209, 207, 207);
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     width: 60%;
 }
 

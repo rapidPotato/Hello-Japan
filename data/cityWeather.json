@@ -112,5 +112,43 @@
         "windDirection": "northeast",
         "windSpeed": 0.45
       }
+    },
+    "Kyoto": {
+      "lon": 130.4017,
+      "lat": 33.5902,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
+    },
+    "Niigata": {
+      "lon": 130.4017,
+      "lat": 33.5902,
+      "weather": {
+        "clouds": 98,
+        "code": "804",
+        "description": "Overcast clouds",
+        "feelsLikeTemp": 288.1,
+        "icon": "/icons/weatherbitIcons/c04d.png",
+        "liquidEquivalentPrecipitationRate": 0,
+        "sunrise": "19:32",
+        "sunset": "09:43",
+        "temp": "14.95",
+        "uvIndex": 5.12319,
+        "visibility": 5,
+        "windDirection": "northeast",
+        "windSpeed": 0.45
+      }
     }
-  }
+}
