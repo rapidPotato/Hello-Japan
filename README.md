@@ -14,7 +14,12 @@ Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that di
 ```
 yarn install
 ```
-**2.** Create a `dotenv` file and fill it with the following:
+**2.** Get your API key 🔑 from [Rakuten Rapid](https://api.rakuten.co.jp/en/) API and [Google Maps]()
+```
+VUE_APP_GAPIKEY=[place your ]
+VUE_APP_GAPIKEY
+```
+**3.** Create a `.env` file and fill it with the following:
 ```
 VUE_APP_GAPIKEY=[place your ]
 VUE_APP_GAPIKEY
