@@ -42,8 +42,6 @@ export default {
   name: "MapDisplay",
   data() {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
       scaledSize: { width: 30, height: 30, f: "px", b: "px" },
       size: { width: 60, height: 90, f: "px", b: "px" },
       origin: { x: 0, y: 0 },

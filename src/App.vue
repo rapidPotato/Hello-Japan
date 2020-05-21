@@ -167,46 +167,6 @@ export default {
     }
   },
 
-  // created: async function() {
-  //   await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
-  //   await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
-  //   await this.getWeatherInfo(
-  //     this.location.Fukuoka.lon,
-  //     this.location.Fukuoka.lat
-  //   );
-  //   await this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
-  //   await this.getWeatherInfo(
-  //     this.location.Sendai.lon,
-  //     this.location.Sendai.lat
-  //   );
-  //   await this.getWeatherInfo(
-  //     this.location.Sapporo.lon,
-  //     this.location.Sapporo.lat
-  //   );
-
-  //   await this.$store.commit("updateInitialWeather", this.location);
-  //   await this.$store.commit("updateWeather", this.location["Tokyo"]);
-  //   // this.$store.commit("updateInitialWeather", cityData['weather']);
-  //   // this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
-  //   await this.$store.commit("updateCity", "Tokyo");
-  //   await this.$store.commit(
-  //     "updateRestaurantInfo",
-  //     cityData["restaurants"]["Tokyo"]
-  //   );
-  //   await this.$store.commit(
-  //     "updateInitialRestaurantInfo",
-  //     cityData["restaurants"]
-  //   );
-  //   await this.$store.commit("updateCoronaInfo", cityData["corona"]);
-
-  //   for (const city of cityData["locations"]) {
-  //     let weatherIcon =
-  //       "http://localhost:8080" +
-  //       this.$store.state.initialWeather[city.name]["weather"]["icon"];
-  //     this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-  //   }
-  // }
-
   created: async function() {
     // fetch weather info
     await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
