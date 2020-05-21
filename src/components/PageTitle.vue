@@ -22,6 +22,7 @@ export default {
 h1 {
     margin-bottom: 20px;
     color: rgb(59, 167, 167);
+    font-size: 50px;
 }
 
 </style>

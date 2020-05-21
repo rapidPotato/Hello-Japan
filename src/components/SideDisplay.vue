@@ -48,4 +48,8 @@ export default {
 .single-tab {
   color: rgb(20, 110, 110);
 }
+
+#SideDisplay {
+  margin-top: -50px;
+}
 </style>

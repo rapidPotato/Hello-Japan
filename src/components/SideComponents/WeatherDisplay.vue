@@ -24,7 +24,7 @@ export default {
 .weatherDisplay {
     text-align : left;
     line-height: 200% ;
-    font-size: 13px;
+    font-size: 15px;
 }
 .weatherHead {
     font-size: 18px;
