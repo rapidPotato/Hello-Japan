@@ -19,8 +19,9 @@ yarn install
 **3.** Create a `.env` file and store your API keys there:
 ```
 VUE_APP_GAPIKEY=[Your Google API Key goes here!]
-VUE_APP_GAPIKEY=[Your Rakuten Rapid API Key goes here!]
+VUE_APP_RAPIKEY=[Your Rakuten Rapid API Key goes here!]
 ```
+**4.** Now that you're all set, run the server and enjoy! 🎉
 ```
 yarn serve
 ```

@@ -14,7 +14,7 @@ export default {
 <style scoped>
 #PageTitle {
     border-bottom: 2px solid rgb(209, 207, 207);
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     width: 60%;
 }
 
