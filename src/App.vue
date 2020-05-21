@@ -79,26 +79,28 @@ export default {
           const actralDataObject = response.data.data[0];
           console.log("####", actralDataObject);
           let result = {};
-          result = actralDataObject["weather"];
+          console.log("WWWWWW", actralDataObject.weather);
+          result = actralDataObject.weather;
           console.log("result", result);
-          // result.weather.icon = `/icons/${
-          //   this.location[actralDataObject.city_name].weather.icon
-          // }.png`;
 
-          // result.weather.temp = (actralDataObject.temp - 273.15).toFixed(2);
+          result.weather.icon = `/icons/${
+            this.location[actralDataObject.city_name].weather.icon
+          }.png`;
 
-          // result.clouds = actralDataObject.clouds;
-          // result.windSpeed = actralDataObject.wind_spd;
-          // result.windDirection = actralDataObject.wind_cdir_full;
-          // result.visibility = actralDataObject.vis;
-          // result.uvIndex = actralDataObject.uv;
-          // result.liquidEquivalentPrecipitationRate = actralDataObject.precip;
-          // result.sunrise = actralDataObject.sunrise;
-          // result.sunset = actralDataObject.sunset;
-          // result.feelsLikeTemp = actralDataObject.app_temp;
+          result.weather.temp = (actralDataObject.temp - 273.15).toFixed(2);
 
-          // this.location.weather = result;
-          // console.log(result);
+          result.clouds = actralDataObject.clouds;
+          result.windSpeed = actralDataObject.wind_spd;
+          result.windDirection = actralDataObject.wind_cdir_full;
+          result.visibility = actralDataObject.vis;
+          result.uvIndex = actralDataObject.uv;
+          result.liquidEquivalentPrecipitationRate = actralDataObject.precip;
+          result.sunrise = actralDataObject.sunrise;
+          result.sunset = actralDataObject.sunset;
+          result.feelsLikeTemp = actralDataObject.app_temp;
+
+          this.location.weather = result;
+          console.log(result);
         })
         .catch(err => {
           console.log(err);
@@ -129,6 +131,29 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+
+    // get corona info
+    getCoronaInfo() {
+      axios
+        .get(
+          "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
+          {
+            headers: {
+              "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
+              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY
+            }
+          }
+        )
+        .then(response => {
+          this.info.total_cases = response.data.data.summary.total_cases;
+          this.info.deaths = response.data.data.summary.deaths;
+          this.info.death_ratio =
+            parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
 
@@ -151,6 +176,11 @@ export default {
     this.getRestaurantsInfo("Fukuoka", 14135118);
     this.getRestaurantsInfo("Sapporo", 298560);
     console.log("this.restaurantInfo:", this.restaurantsInfo);
+    this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
+
+    // fetch corona info
+    this.getCoronaInfo();
+    this.$store.commit("updateCoronaInfo", this.info);
   }
 };
 </script>
