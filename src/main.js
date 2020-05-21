@@ -27,11 +27,15 @@ const store = new Vuex.Store({
     coronaInfo: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
-    initialRestaurantInfo: {}
+    initialRestaurantInfo: {},
+    markers: [],
   },
   mutations: {
     updateCity: (state, newCity) => {
       state.currentCity = newCity;
+    },
+    updateMarkers: (state, markers) => {
+      state.markers = markers;
     },
     updateWeather: (state, newWeather) => {
       state.currentWeather = newWeather;

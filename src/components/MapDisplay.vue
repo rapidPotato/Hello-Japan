@@ -12,7 +12,7 @@
     <gmap-map :center="center" :zoom="4" style="width: 90%; height: 500px;">
       <gmap-marker
         :key="index"
-        v-for="(m, index) in markers"
+        v-for="(m, index) in this.$store.state.markers"
         :position="m.position"
         :icon="{
           url: m.icon.url,
@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import cityData from "../../data/index.js";
-
 export default {
   name: "MapDisplay",
   data() {
@@ -49,14 +47,14 @@ export default {
       currentPlace: null,
       mapWeatherObj: {
         Sun:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
-        Snow: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-snow.svg",
-        Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
+        Snow: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-snow.svg",
+        Rain: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
         Lightning:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
         Clouds:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
-      },
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg"
+      }
     };
   },
 
@@ -64,16 +62,18 @@ export default {
     this.geolocate();
   },
 
-  created: function () {
-    // console.log(this.$store.state.initialWeather)
-    for (const city of cityData["locations"]) {
-      // console.log(city,'in map.vue created')
-      let weatherIcon =
-        "http://localhost:8080" +
-        this.$store.state.initialWeather[city.name]["weather"]["icon"];
-      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-    }
-  },
+  // created: function() {
+  //   // // console.log(this.$store.state.initialWeather)
+  //   // for (const city of cityData["locations"]) {
+  //   //   // console.log(city,'in map.vue created')
+  //   //   console.log(this.$store.state.initialWeather);
+  //   //   console.log(city.name, "In Map.view");
+  //   //   let weatherIcon =
+  //   //     "http://localhost:8080" +
+  //   //     this.$store.state.initialWeather[city.name]["weather"]["icon"];
+  //   //   this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+  //   // }
+  // },
 
   methods: {
     // receives a place object via the autocomplete component
@@ -83,7 +83,7 @@ export default {
     updateCity(newCity) {
       let newWeather = this.$store.state.initialWeather[newCity];
       let newRestaurant = this.$store.state.initialRestaurantInfo[newCity];
-      console.log(this.$store.state.initialRestaurantInfo)
+      console.log(this.$store.state.initialRestaurantInfo);
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
       this.$store.commit("updateRestaurantInfo", newRestaurant);
@@ -91,12 +91,12 @@ export default {
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon,
+        lng: newLon
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
@@ -106,7 +106,7 @@ export default {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
+          lng: this.currentPlace.geometry.location.lng()
         };
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
@@ -114,15 +114,15 @@ export default {
         this.currentPlace = null;
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
