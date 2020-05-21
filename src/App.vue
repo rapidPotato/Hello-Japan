@@ -84,6 +84,7 @@ export default {
       );
 
       const actualDataObject = response.data.data[0];
+      console.log('actualDataObject:', actualDataObject)
 
       // pull each of the responses key's value into the ActualDataObject
       this.location[actualDataObject.city_name].weather =
@@ -178,19 +179,17 @@ export default {
     await this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
     await this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
     await this.$store.commit("updateInitialWeather", this.location);
-    console.log('this.location:', this.location)
 
 
     for (const city of cityData["locations"]) {
-      let weatherIcon =
-      "http://localhost:8080" +
-      this.$store.state.initialWeather[city.name]["weather"]["icon"];
+      let weatherIcon = `${process.env.VUE_APP_SITEURL}${this.$store.state.initialWeather[city.name]["weather"]["icon"]}`;
+      console.log('weatherIcon:', weatherIcon)
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
     await this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
-      console.log(this.info,'coronaInfo')
+
     // fetch restaurant info
     await this.getRestaurantsInfo("Tokyo", 14133667);
     await this.getRestaurantsInfo("Osaka", 14135010);
@@ -200,9 +199,6 @@ export default {
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
     await this.$store.commit("updateCurrentRestaurantInfo", this.restaurantsInfo['Tokyo']);
-
-    console.log(this.$store.state.initialRestaurantInfo)
-    console.log(this.$store.state.currentRestaurantInfo)
 
   },
 };

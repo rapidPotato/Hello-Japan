@@ -1,7 +1,7 @@
 <template>
   <div id="WeatherDisplay">
     <div class = 'weatherHead'> <b> Your Daily Weather Report for {{this.$store.state.currentCity}} </b></div>
-    <div class = 'weatherDisplay'> <b> Current Temperature: </b>{{ Math.round(this.$store.state.currentWeather.weather.temp) }} &#176;C </div>
+    <div class = 'weatherDisplay'> <b> Current Temperature: </b>{{ this.$store.state.currentWeather.weather.temp ? Math.round(this.$store.state.currentWeather.weather.temp) : "" }} &#176;C </div>
     <div class = 'weatherDisplay'> <b>Feels like:</b> {{ Math.round(this.$store.state.currentWeather.weather.feelsLikeTemp) - 273 }} &#176;C</div>
     <div class = 'weatherDisplay'><b>Window Weather:</b> {{ this.$store.state.currentWeather.weather.description }} </div>
     <div class = 'weatherDisplay'><b>Sunrise & Sunset:</b> {{  moment(this.$store.state.currentWeather.weather.sunrise, 'HH:mm').add(9, 'hours').format('HH:mm')}} & {{moment(this.$store.state.currentWeather.weather.sunset, 'HH:mm').add(9, 'hours').format('HH:mm')}} </div>
