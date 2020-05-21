@@ -127,6 +127,7 @@ export default {
           }
         )
           const result = {};
+          console.log(response, 'Restaurant Data')
           this.restaurantsInfo[city] = result;
           result.address = response.data.data[0].address;
           result.name = response.data.data[0].name;
@@ -146,11 +147,7 @@ export default {
             },
           }
         )
-
-          this.info.total_cases = response.data.data.summary.total_cases;
-          this.info.deaths = response.data.data.summary.deaths;
-          this.info.death_ratio =
-            parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
+          this.info = response.data.data
     },
 
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
@@ -222,6 +219,16 @@ export default {
     console.log('this.location:', this.location)
 
 
+    for (const city of cityData["locations"]) {
+      let weatherIcon =
+      "http://localhost:8080" +
+      this.$store.state.initialWeather[city.name]["weather"]["icon"];
+      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+    }
+    // fetch corona info
+    await this.getCoronaInfo();
+    this.$store.commit("updateCoronaInfo", this.info);
+      console.log(this.info,'coronaInfo')
     // fetch restaurant info
     await this.getRestaurantsInfo("Tokyo", 14133667);
     await this.getRestaurantsInfo("Osaka", 14135010);
@@ -230,20 +237,11 @@ export default {
     await this.getRestaurantsInfo("Fukuoka", 14135118);
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
-    console.log('this.restaurantsInfo:', this.restaurantsInfo)
+    await this.$store.commit("updateCurrentRestaurantsInfo", this.restaurantsInfo['Tokyo']);
 
-    // fetch corona info
-    await this.getCoronaInfo();
-    await this.$store.commit("updateCoronaInfo", this.info);
-    console.log('this.info:', this.info)
+    console.log(this.$state.store.initialRestaurantInfo)
+    console.log(this.$state.store.currentRestaurantInfo)
 
-
-    for (const city of cityData["locations"]) {
-      let weatherIcon =
-      "https://hellojapanapp-cc.herokuapp.com/" +
-      this.$store.state.initialWeather[city.name]["weather"]["icon"];
-      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-    }
   },
 };
 </script>

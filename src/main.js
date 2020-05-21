@@ -42,7 +42,7 @@ const store = new Vuex.Store({
     currentWeather: {},
     initialWeather: {},
     coronaInfo: {},
-    restaurantInfo: {},
+    // restaurantInfo: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
@@ -68,9 +68,9 @@ const store = new Vuex.Store({
       state.coronaInfo = coronaInfoObj;
     },
     updateRestaurantsInfo: (state, restaruantInfoObj) => {
-      state.restaurantInfo = restaruantInfoObj;
+      state.initialRestaurantInfo = restaruantInfoObj;
     },
-    updateRestaurantInfo: (state, restaurantInfoObj) => {
+    updateCurrentRestaurantInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
     },
   },
