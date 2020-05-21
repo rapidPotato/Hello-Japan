@@ -27,6 +27,7 @@ const store = new Vuex.Store({
     initialWeather: {},
     coronaInfo: {},
     // restaurantInfo: {},
+    randomQuote: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
@@ -56,6 +57,10 @@ const store = new Vuex.Store({
     },
     updateCurrentRestaurantsInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
+    },
+    updateRandomQuote: (state, quote) => {
+      state.randomQuote = quote;
+      console.log(state.randomQuote);
     },
   },
 });

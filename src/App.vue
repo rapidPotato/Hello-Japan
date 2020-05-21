@@ -127,7 +127,9 @@ export default {
       result.name = response.data.data[0].name;
       result.opening = response.data.data[0].open_now_text;
       result.phone = response.data.data[0].phone;
-      result.image = response.data.data[0].photo.images.small.url;
+      if (response.data.data[0].photo !== undefined) {
+        result.image = response.data.data[0].photo.images.small.url;
+      }
     },
 
     // get corona info
@@ -157,48 +159,18 @@ export default {
       this.center = marker;
       this.$store.commit("updateMarkers", this.markers);
     },
+    async getQuote() {
+      return await axios.get("https://quotes21.p.rapidapi.com/quote", {
+        headers: {
+          "x-rapidapi-host": "quotes21.p.rapidapi.com",
+          "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
+        },
+      });
+    },
   },
-
-  // created: async function() {
-  //   await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
-  //   await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
-  //   await this.getWeatherInfo(
-  //     this.location.Fukuoka.lon,
-  //     this.location.Fukuoka.lat
-  //   );
-  //   await this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
-  //   await this.getWeatherInfo(
-  //     this.location.Sendai.lon,
-  //     this.location.Sendai.lat
-  //   );
-  //   await this.getWeatherInfo(
-  //     this.location.Sapporo.lon,
-  //     this.location.Sapporo.lat
-  //   );
-
-  //   await this.$store.commit("updateInitialWeather", this.location);
-  //   await this.$store.commit("updateWeather", this.location["Tokyo"]);
-  //   // this.$store.commit("updateInitialWeather", cityData['weather']);
-  //   // this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
-  //   await this.$store.commit("updateCity", "Tokyo");
-  //   await this.$store.commit(
-  //     "updateRestaurantInfo",
-  //     cityData["restaurants"]["Tokyo"]
-  //   );
-  //   await this.$store.commit(
-  //     "updateInitialRestaurantInfo",
-  //     cityData["restaurants"]
-  //   );
-  //   await this.$store.commit("updateCoronaInfo", cityData["corona"]);
-
-  //   for (const city of cityData["locations"]) {
-  //     let weatherIcon =
-  //       "http://localhost:8080" +
-  //       this.$store.state.initialWeather[city.name]["weather"]["icon"];
-  //     this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-  //   }
-  // }
   created: async function() {
+    const quote = await this.getQuote();
+    this.$store.commit("updateRandomQuote", quote.data);
     // fetch weather info
     await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
     await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
@@ -216,18 +188,16 @@ export default {
       this.location.Sapporo.lat
     );
     await this.$store.commit("updateInitialWeather", this.location);
-    console.log(this.location, "weather info");
 
     for (const city of cityData["locations"]) {
       let weatherIcon =
-        "http://localhost:8080" +
+        process.env.VUE_APP_SITE_URL +
         this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
     await this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
-    console.log(this.info, "coronaInfo");
     // fetch restaurant info
     await this.getRestaurantsInfo("Tokyo", 14133667);
     await this.getRestaurantsInfo("Osaka", 14135010);
@@ -237,12 +207,9 @@ export default {
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
     await this.$store.commit(
-      "updateCurrentRestaurantsInfo",
+      "updateCurrentRestaurantInfo",
       this.restaurantsInfo["Tokyo"]
     );
-
-    console.log(this.$state.store.initialRestaurantInfo);
-    console.log(this.$state.store.currentRestaurantInfo);
   },
 };
 </script>
