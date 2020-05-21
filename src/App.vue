@@ -4,6 +4,9 @@
       <PageTitle id="PageTitle" />
     </div>
     <div class="row">
+      <Clock id="Clock" />
+    </div>
+    <div class="row">
       <div class="col-6">
         <MapDisplay />
       </div>
@@ -18,15 +21,18 @@
 import MapDisplay from "./components/MapDisplay.vue";
 import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
+import Clock from "./components/Clock.vue";
 import axios from "axios";
 import "dotenv/config";
+// import cityData from "../data/index.js";
 
 export default {
   name: "App",
   components: {
     MapDisplay,
     SideDisplay,
-    PageTitle
+    PageTitle,
+    Clock,
   },
   data() {
     return {
@@ -34,31 +40,31 @@ export default {
       location: {
         Tokyo: {
           lon: 139.6503,
-          lat: 35.6762
+          lat: 35.6762,
         },
         Osaka: {
           lon: 135.5023,
-          lat: 34.6937
+          lat: 34.6937,
         },
         Naha: {
           lon: 127.679,
-          lat: 26.2126
+          lat: 26.2126,
         },
         Sendai: {
           lon: 140.8694,
-          lat: 38.2682
+          lat: 38.2682,
         },
         Fukuoka: {
           lon: 130.4017,
-          lat: 33.5902
+          lat: 33.5902,
         },
         Sapporo: {
           lat: 43.0618,
-          lon: 141.3545
-        }
+          lon: 141.3545,
+        },
       },
       // this if for restaurant data
-      restaurantsInfo: {}
+      restaurantsInfo: {},
     };
   },
 
@@ -71,23 +77,17 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY
-            }
+              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           const actralDataObject = response.data.data[0];
-          console.log("####", actralDataObject);
+          // console.log("####", actralDataObject);
           let result = {};
-          console.log("WWWWWW", actralDataObject.weather);
           result = actralDataObject.weather;
-          console.log("result", result);
 
-          result.weather.icon = `/icons/${
-            this.location[actralDataObject.city_name].weather.icon
-          }.png`;
-
-          result.weather.temp = (actralDataObject.temp - 273.15).toFixed(2);
+          result.temp = (actralDataObject.temp - 273.15).toFixed(2);
 
           result.clouds = actralDataObject.clouds;
           result.windSpeed = actralDataObject.wind_spd;
@@ -99,10 +99,11 @@ export default {
           result.sunset = actralDataObject.sunset;
           result.feelsLikeTemp = actralDataObject.app_temp;
 
+          result.icon = `/icons/${result.icon}.png`;
           this.location.weather = result;
           console.log(result);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -115,11 +116,11 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY
-            }
+              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           const result = {};
           this.restaurantsInfo[city] = result;
           result.address = response.data.data[0].address;
@@ -128,7 +129,7 @@ export default {
           result.phone = response.data.data[0].phone;
           result.image = response.data.data[0].photo.images.small.url;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -141,20 +142,20 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY
-            }
+              "x-rapidapi-key": process.env.VUE_APP_RAKUTEN_KEY,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           this.info.total_cases = response.data.data.summary.total_cases;
           this.info.deaths = response.data.data.summary.deaths;
           this.info.death_ratio =
             parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
+    },
   },
 
   created: function() {
@@ -181,7 +182,7 @@ export default {
     // fetch corona info
     this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
-  }
+  },
 };
 </script>
 
@@ -192,7 +193,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 .tabs-component {
   margin: 4em 0;

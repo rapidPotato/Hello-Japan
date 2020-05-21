@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: "CoronaDisplay"
+  name: "CoronaDisplay",
   // data() {
   //   return {
   //     info: {}
