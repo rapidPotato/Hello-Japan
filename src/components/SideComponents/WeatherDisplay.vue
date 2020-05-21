@@ -1,15 +1,16 @@
 <template>
   <div id="WeatherDisplay">
-    <h4> Your Daily Weather Report for {{this.$store.state.currentCity}} </h4>
-    <h6>Current Temperature (C): {{ Math.round(this.$store.state.currentWeather.weather.temp) }} </h6>
-    <h6>Feels like (C): {{ Math.round(this.$store.state.currentWeather.weather.feelsLikeTemp) - 273 }} </h6>
-    <h6>Window Weather: {{ this.$store.state.currentWeather.weather.description }} </h6>
-    <h6>Sunrise & Sunset: {{  moment(this.$store.state.currentWeather.weather.sunrise, 'HH:mm').add(9, 'hours').format('HH:mm')}} & {{moment(this.$store.state.currentWeather.weather.sunset, 'HH:mm').add(9, 'hours').format('HH:mm')}} </h6>
-    <h6>Cloud Coverage (%): {{ this.$store.state.currentWeather.weather.clouds }} </h6>
-    <h6>Expected Preciptiation (mm/hr): {{ this.$store.state.currentWeather.weather.liquidEquivalentPrecipitationRate }} </h6>
-    <h6>Wind Speed (m/s) & Direction: {{ this.$store.state.currentWeather.weather.windSpeed }} from {{ this.$store.state.currentWeather.weather.windDirection }} </h6>
-    <h6>Visibility (km): {{ this.$store.state.currentWeather.weather.visibility }} </h6>
-    <h6>UV Index: {{ this.$store.state.currentWeather.weather.uvIndex }} </h6>
+    <div class = 'weatherHead'> Your Daily Weather Report for {{this.$store.state.currentCity}} </div>
+    <div class = 'weatherDisplay'> <b> Current Temperature: </b>{{ Math.round(this.$store.state.currentWeather.weather.temp) }} &#176;C </div>
+    <div class = 'weatherDisplay'> <b>Feels like:</b> {{ Math.round(this.$store.state.currentWeather.weather.feelsLikeTemp) - 273 }} &#176;C</div>
+    <div class = 'weatherDisplay'><b>Window Weather:</b> {{ this.$store.state.currentWeather.weather.description }} </div>
+    <div class = 'weatherDisplay'><b>Sunrise & Sunset:</b> {{  moment(this.$store.state.currentWeather.weather.sunrise, 'HH:mm').add(9, 'hours').format('HH:mm')}} & {{moment(this.$store.state.currentWeather.weather.sunset, 'HH:mm').add(9, 'hours').format('HH:mm')}} </div>
+    <div class = 'weatherDisplay'><b>Cloud Coverage:</b> {{ this.$store.state.currentWeather.weather.clouds }}% </div>
+    <div class = 'weatherDisplay'><b>Expected Preciptiation:</b> {{ this.$store.state.currentWeather.weather.liquidEquivalentPrecipitationRate }} mm/hr</div>
+    <div class = 'weatherDisplay'><b>Wind Speed:</b> {{ this.$store.state.currentWeather.weather.windSpeed }}m/s  </div>
+    <div class = 'weatherDisplay'><b> Wind Direction:</b> {{ this.$store.state.currentWeather.weather.windDirection }} </div>
+    <div class = 'weatherDisplay'><b>Visibility:</b> {{ this.$store.state.currentWeather.weather.visibility }} km</div>
+    <div class = 'weatherDisplay'><b>UV Index:</b> {{ this.$store.state.currentWeather.weather.uvIndex }} </div>
   </div>
 </template>
 
@@ -19,6 +20,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.weatherDisplay {
+    text-align : left;
+    line-height: 200% ;
+    font-size: 13px;
+}
+.weatherHead {
+    font-size: 18px;
+    padding: 0em 0em .5em;
+}
 </style>
+

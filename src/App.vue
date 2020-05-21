@@ -29,6 +29,7 @@ export default {
   },
   data() {
     return {
+      // If you update this please update data\cityLocations.json
       location: {
         Tokyo: {
           lon: 139.6503,
@@ -49,6 +50,10 @@ export default {
         Fukuoka: {
           lon: 130.4017,
           lat: 33.5902,
+        },
+        Sapporo: {
+          lat: 43.0618,
+          lon: 141.3545,
         },
       },
     };
@@ -73,7 +78,7 @@ export default {
             actralDataObject.weather;
           this.location[
             actralDataObject.city_name
-          ].weather.icon = `../../public/icons/${
+          ].weather.icon = `/icons/${
             this.location[actralDataObject.city_name].weather.icon
           }.png`;
           this.location[actralDataObject.city_name].weather.temp = (
@@ -111,7 +116,8 @@ export default {
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
     this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
     this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
-
+    this.getWeatherInfo(this.location.Sapporon.lon, this.location.Sapporo.lat);
+    
     this.$store.commit("updateInitialWeather", this.location);
   },
 };
@@ -207,8 +213,8 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    padding: 4em 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+    padding: 1.5em 2em;
   }
 }
 </style>

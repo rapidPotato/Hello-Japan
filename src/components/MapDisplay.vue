@@ -1,21 +1,14 @@
 <template>
   <div>
     <div>
-      <h5 >Search and add a pin</h5>
+      <h5>Search and add a pin</h5>
       <label>
-        <gmap-autocomplete
-          @place_changed="setPlace">
-        </gmap-autocomplete>
+        <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
         <button @click="addMarkerFromSearch">Add</button>
       </label>
     </div>
-    <br>
-    <gmap-map
-      :center="center"
-      :zoom="4"
-      style="width:90%;  height: 500px;"
-      :options="options"
-    >
+    <br />
+    <gmap-map :center="center" :zoom="4" style="width:90%;  height: 500px;" :options="options">
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
@@ -34,8 +27,8 @@
 </template>
 
 <script>
-import cityData from "../../data/index.js"
-import mapStyles from "../../public/mapStyles.json"
+import cityData from "../../data/index.js";
+import mapStyles from "../../public/mapStyles.json";
 
 export default {
   name: "MapDisplay",
@@ -52,41 +45,22 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-<<<<<<< HEAD
         Sun: "http://localhost:8081/public/icons/30x30/wi-day-sunny.svg",
         Snow: "http://localhost:8081/public/icons/30x30/wi-snow.svg",
         Rain: "http://localhost:8081/public/icons/weatherbitIcons/r01d.png",
         Lightning: "http://localhost:8081/public/icons/30x30/wi-lightning.svg",
-        Clouds: "http://localhost:8081/public/icons/30x30/wi-day-cloudy.svg",
+        Clouds: "http://localhost:8081/public/icons/30x30/wi-day-cloudy.svg"
       },
       options: {
         styles: mapStyles
       }
-=======
-        Sun:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
-        Snow: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-snow.svg",
-        Rain: "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-rain.svg",
-        Lightning:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
-        Clouds:
-          "https://helloworldapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
-      },
->>>>>>> 9f3b8ad2ed7023c560229ff8e8cd2101e4f9df37
     };
   },
   // mounted() {
   //   this.geolocate();
   // },
 
-  created: function () {
-<<<<<<< HEAD
-      for(const city of cityData.locations) {
-        let weatherIcon = "http://localhost:8080" +  cityData['weather'][city.name]['weather']['icon']
-        console.log(weatherIcon, "in created")
-        this.addMarkerByLatLon(city.lat,city.lon,weatherIcon,city.name)
-      }
-=======
+  created: function() {
     console.log(this.$store.state);
     for (const city of cityData.locations) {
       let weatherIcon =
@@ -95,7 +69,6 @@ export default {
       console.log(weatherIcon, "in created");
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
->>>>>>> 9f3b8ad2ed7023c560229ff8e8cd2101e4f9df37
   },
 
   methods: {
@@ -110,57 +83,55 @@ export default {
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       console.log(cityName, weatherURL);
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-<<<<<<< HEAD
         lng: newLon
-      }
-        this.markers.push({ position: marker, icon: image, cityName: cityName});
-        this.places.push(this.currentPlace);
-        this.center = marker;
-=======
-        lng: newLon,
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
       this.center = marker;
->>>>>>> 9f3b8ad2ed7023c560229ff8e8cd2101e4f9df37
     },
     addMarkerFromSearch() {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
+          lng: this.currentPlace.geometry.location.lng()
         };
         // console.log(marker.lat, marker.lng)
 
         // look up weather so we can convert it to icon
         //TODO: should call weather API for weather icon code
-        const weatherIcon = cityData.weather.filter(city => city.name === this.currentPlace.name)[0].mapWeather;
+        const weatherIcon = cityData.weather.filter(
+          city => city.name === this.currentPlace.name
+        )[0].mapWeather;
         //TODO: should use icon code from api to get image
-        const weatherURL= this.mapWeatherObj[weatherIcon]
+        const weatherURL = this.mapWeatherObj[weatherIcon];
         const image = {
           url: weatherURL
-        }
+        };
 
-        this.markers.push({ position: marker, icon: image, cityName: this.currentPlace.name });
+        this.markers.push({
+          position: marker,
+          icon: image,
+          cityName: this.currentPlace.name
+        });
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
