@@ -123,6 +123,7 @@ export default {
           }
         )
           const result = {};
+          console.log(response, 'Restaurant Data')
           this.restaurantsInfo[city] = result;
           result.address = response.data.data[0].address;
           result.name = response.data.data[0].name;
@@ -142,17 +143,7 @@ export default {
             },
           }
         )
-        // .then((response) => {
-          console.log(response)
           this.info = response.data.data
-          // this.info.total_cases = response.data.data.summary.total_cases;
-          // this.info.deaths = response.data.data.summary.deaths;
-          // this.info.death_ratio =
-          //   parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
-        // })
-        // .catch((err) => {
-        //   console.log(err);
-        // });
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
@@ -238,7 +229,10 @@ export default {
     await this.getRestaurantsInfo("Fukuoka", 14135118);
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
-    console.log(this.restaurantsInfo, "restaurant info")
+    await this.$store.commit("updateCurrentRestaurantsInfo", this.restaurantsInfo['Tokyo']);
+
+    console.log(this.$state.store.initialRestaurantInfo)
+    console.log(this.$state.store.currentRestaurantInfo)
 
   },
 };
