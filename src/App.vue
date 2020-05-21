@@ -113,12 +113,19 @@ export default {
   },
 
   created: function () {
+
     this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
     this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
     this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
     this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
     this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
+    
+    
+    
+    
+    
+    
     // this.$store.commit("updateInitialWeather", this.location);
     // this.$store.commit("updateWeather",this.location['Tokyo'])
     this.$store.commit("updateInitialWeather", cityData['weather']);
@@ -126,8 +133,9 @@ export default {
     this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
     this.$store.commit("updateRestaurantInfo",cityData['restaurants']['Tokyo'])
     this.$store.commit("updateInitialRestaurantInfo",cityData['restaurants'])
+    this.$store.commit("updateCoronaInfo",cityData['corona'])
     console.log(cityData['restaurants']['Tokyo'])
-    console.log(this.$store.state)
+    console.log(this.$store.state.corona)
 
   },
 };
