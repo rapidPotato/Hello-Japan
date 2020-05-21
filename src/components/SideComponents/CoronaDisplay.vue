@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CoronaDisplay",
   data() {
@@ -22,7 +24,7 @@ export default {
             headers: {
               "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
               "x-rapidapi-key":
-                "ee62d00b17msh2828a661daa5b94p12ebe1jsna0e96c79cfd9",
+                process.env.VUE_APP_RAPIKEY,
             },
           }
         )
