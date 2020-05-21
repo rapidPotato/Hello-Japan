@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.single-tab {
+tab {
   color: rgb(14, 80, 80);
 }
 </style>
