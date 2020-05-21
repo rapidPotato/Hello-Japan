@@ -203,6 +203,9 @@ export default {
   //   }
   // }
   created: async function() {
+    console.log(cityData.quote,"quote")
+    this.$store.commit("updateQuote",cityData.quote)
+    console.log(this.$store.state.quote)
     // fetch weather info
     await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
     await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
@@ -211,30 +214,28 @@ export default {
     await this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
     await this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
     await this.$store.commit("updateInitialWeather", this.location);
-    console.log(this.location, 'weather info')
+    this.$store.commit("updateWeather",this.location['Tokyo'])
 
     for (const city of cityData["locations"]) {
       let weatherIcon =
-      "http://localhost:8080" +
+       process.env.VUE_APP_SITE_URL +
       this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
     await this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
-      console.log(this.info,'coronaInfo')
     // fetch restaurant info
-    await this.getRestaurantsInfo("Tokyo", 14133667);
-    await this.getRestaurantsInfo("Osaka", 14135010);
-    await this.getRestaurantsInfo("Naha", 298224);
-    await this.getRestaurantsInfo("Sendai", 298249);
-    await this.getRestaurantsInfo("Fukuoka", 14135118);
-    await this.getRestaurantsInfo("Sapporo", 298560);
-    await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
-    await this.$store.commit("updateCurrentRestaurantInfo", this.restaurantsInfo['Tokyo']);
+    // await this.getRestaurantsInfo("Tokyo", 14133667);
+    // await this.getRestaurantsInfo("Osaka", 14135010);
+    // await this.getRestaurantsInfo("Naha", 298224);
+    // await this.getRestaurantsInfo("Sendai", 298249);
+    // await this.getRestaurantsInfo("Fukuoka", 14135118);
+    // await this.getRestaurantsInfo("Sapporo", 298560);
+    // await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
+    // await this.$store.commit("updateCurrentRestaurantInfo", this.restaurantsInfo['Tokyo']);
 
-    console.log(this.$store.state.initialRestaurantInfo)
-    console.log(this.$store.state.currentRestaurantInfo)
+
 
   },
 };
