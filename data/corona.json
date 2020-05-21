@@ -1,0 +1,20 @@
+{
+    "change": {
+      "active_cases": -707,
+      "critical": -3,
+      "deaths": 3,
+      "recovered": 722,
+      "tested": 2602,
+      "total_cases": 18
+    },
+    "summary": {
+      "active_cases": 3328,
+      "critical": 210,
+      "death_ratio": 0.04705523344522429,
+      "deaths": 771,
+      "recovered": 12286,
+      "recovery_ratio": 0.7498321635642355,
+      "tested": 258277,
+      "total_cases": 16385
+    }
+  }

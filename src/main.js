@@ -2,9 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as VueGoogleMaps from "vue2-google-maps";
 import { Tabs, Tab } from "vue-tabs-component";
-require("dotenv").config(require("find-config")(".env"));
 import moment from "moment";
 import App from "./App.vue";
+// require("dotenv").config(require("find-config")(".env"));
+require("dotenv").config();
 
 Vue.component("tabs", Tabs);
 Vue.component("tab", Tab);
@@ -25,14 +26,18 @@ const store = new Vuex.Store({
     currentWeather: {},
     initialWeather: {},
     coronaInfo: {},
-    restaurantInfo: {},
+    // restaurantInfo: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
+    markers: [],
   },
   mutations: {
     updateCity: (state, newCity) => {
       state.currentCity = newCity;
+    },
+    updateMarkers: (state, markers) => {
+      state.markers = markers;
     },
     updateWeather: (state, newWeather) => {
       state.currentWeather = newWeather;
@@ -47,9 +52,9 @@ const store = new Vuex.Store({
       state.coronaInfo = coronaInfoObj;
     },
     updateRestaurantsInfo: (state, restaruantInfoObj) => {
-      state.restaurantInfo = restaruantInfoObj;
+      state.initialRestaurantInfo = restaruantInfoObj;
     },
-    updateRestaurantInfo: (state, restaurantInfoObj) => {
+    updateCurrentRestaurantsInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
     },
   },

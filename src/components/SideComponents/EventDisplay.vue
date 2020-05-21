@@ -1,7 +1,7 @@
 <template>
   <div id="EventDisplay">
     <h1>Coming Soon!</h1>
-    <h20> After the State of Emergency </h20>
+    <h6>After the State of Emergency</h6>
   </div>
 </template>
 
