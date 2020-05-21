@@ -16,7 +16,7 @@
     >
       <gmap-marker
         :key="index"
-        v-for="(m, index) in markers"
+        v-for="(m, index) in this.$store.state.markers"
         :position="m.position"
         :icon="{
           url: m.icon.url,
@@ -34,6 +34,7 @@
 <script>
 import cityData from "../../data/index.js";
 import mapStyles from "../../public/mapStyles.json";
+
 
 export default {
   name: "MapDisplay",
@@ -70,14 +71,18 @@ export default {
     this.geolocate();
   },
 
-  created: function() {
-    for (const city of cityData["locations"]) {
-      let weatherIcon =
-        "http://localhost:8080" +
-        cityData["weather"][city.name]["weather"]["icon"];
-      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-    }
-  },
+  // created: function() {
+  //   // // console.log(this.$store.state.initialWeather)
+  //   // for (const city of cityData["locations"]) {
+  //   //   // console.log(city,'in map.vue created')
+  //   //   console.log(this.$store.state.initialWeather);
+  //   //   console.log(city.name, "In Map.view");
+  //   //   let weatherIcon =
+  //   //     "http://localhost:8080" +
+  //   //     this.$store.state.initialWeather[city.name]["weather"]["icon"];
+  //   //   this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+  //   // }
+  // },
 
   methods: {
     setPlace(place) {
@@ -92,12 +97,12 @@ export default {
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon,
+        lng: newLon
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
@@ -107,7 +112,7 @@ export default {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
+          lng: this.currentPlace.geometry.location.lng()
         };
 
         // look up weather so we can convert it to icon
@@ -135,11 +140,11 @@ export default {
       navigator.geolocation.getCurrentPosition((position) => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
