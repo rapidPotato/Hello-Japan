@@ -62,7 +62,6 @@ const store = new Vuex.Store({
     },
     updateRandomQuote: (state, quote) => {
       state.randomQuote = quote;
-      console.log(state.randomQuote);
     },
   },
 });

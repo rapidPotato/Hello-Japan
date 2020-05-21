@@ -83,7 +83,6 @@ export default {
       );
 
       const actualDataObject = response.data.data[0];
-      console.log('actualDataObject:', actualDataObject)
 
       // pull each of the responses key's value into the ActualDataObject
       this.location[actualDataObject.city_name].weather =

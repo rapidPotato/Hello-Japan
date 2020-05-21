@@ -21,7 +21,7 @@ export default {
 
 h1 {
     margin-bottom: 20px;
-    color: rgb(37, 117, 117);
+    color: rgb(59, 167, 167);
 }
 
 </style>
