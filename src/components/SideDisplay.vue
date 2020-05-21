@@ -1,21 +1,21 @@
 <template>
   <div id="SideDisplay">
     <!-- <h1> This is the Side Display </h1> -->
-    <tabs>
-      <tab name="Weather">
+    <tabs class="tabs">
+      <tab class="single-tab" name="Weather">
         <WeatherDisplay />
       </tab>
       <tab name="Health">
         <CoronaDisplay />
-      </tab>
-      <tab name="Events">
-        <EventDisplay />
       </tab>
       <tab name="Restaurant">
         <RestaurantDisplay />
       </tab>
       <tab name="Quote">
         <HoroscopeDisplay />
+      </tab>
+      <tab name="Events">
+        <EventDisplay />
       </tab>
     </tabs>
   </div>
@@ -41,4 +41,15 @@ export default {
 </script>
 
 <style scoped>
+.tabs {
+  color: rgb(20, 110, 110);
+}
+
+.single-tab {
+  color: rgb(20, 110, 110);
+}
+
+#SideDisplay {
+  margin-top: -50px;
+}
 </style>

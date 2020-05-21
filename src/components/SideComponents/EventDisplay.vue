@@ -1,6 +1,6 @@
 <template>
   <div id="EventDisplay">
-    <h1>Coming Soon!</h1>
+    <h3>Coming Soon!</h3>
     <h6>After the State of Emergency</h6>
   </div>
 </template>
@@ -11,4 +11,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h3 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 15px;
+}
+</style>

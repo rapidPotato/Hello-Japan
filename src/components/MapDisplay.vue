@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div>
-      <h5>Search and add a pin</h5>
+    <div class="row">
+      <div class="col-12">
+      <!-- <h5>Search and add a pin</h5>
       <label>
         <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
         <button @click="addMarkerFromSearch">Add</button>
-      </label>
-    </div>
+      </label> -->
     <br />
     <gmap-map
       :center="center"
-      :zoom="4"
-      style="width:90%;  height: 500px;"
+      :zoom="5"
+      style="width:100%;  height: 500px;"
       :options="options"
     >
       <gmap-marker
@@ -28,6 +28,8 @@
         @click="(center = m.position), updateCity(m.cityName)"
       ></gmap-marker>
     </gmap-map>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -39,8 +41,6 @@ export default {
   name: "MapDisplay",
   data() {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
       scaledSize: { width: 30, height: 30, f: "px", b: "px" },
       size: { width: 60, height: 90, f: "px", b: "px" },
       origin: { x: 0, y: 0 },
@@ -67,7 +67,7 @@ export default {
   },
 
   mounted() {
-    this.geolocate();
+    // this.geolocate();
   },
   methods: {
     setPlace(place) {

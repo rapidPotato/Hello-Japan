@@ -7,10 +7,10 @@
       <Clock id="Clock" />
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
         <MapDisplay />
       </div>
-      <div class="col-6">
+      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
         <SideDisplay id="SideDisplay" />
       </div>
     </div>
@@ -24,7 +24,7 @@ import PageTitle from "./components/PageTitle.vue";
 import Clock from "./components/Clock.vue";
 import axios from "axios";
 import cityData from "../data/index.js";
-// require("dotenv").config(require("find-config")(".env"));
+
 require("dotenv").config();
 
 export default {
@@ -81,35 +81,39 @@ export default {
           },
         }
       );
-      const actralDataObject = response.data.data[0];
-      this.location[actralDataObject.city_name].weather =
-        actralDataObject.weather;
-      this.location[actralDataObject.city_name].weather.icon = `/icons/${
-        this.location[actralDataObject.city_name].weather.icon
+
+      const actualDataObject = response.data.data[0];
+
+      // pull each of the responses key's value into the ActualDataObject
+      this.location[actualDataObject.city_name].weather =
+        actualDataObject.weather;
+      this.location[actualDataObject.city_name].weather.icon = `/icons/${
+        this.location[actualDataObject.city_name].weather.icon
       }.png`;
-      this.location[actralDataObject.city_name].weather.temp = (
-        actralDataObject.temp - 273.15
+      this.location[actualDataObject.city_name].weather.temp = (
+        actualDataObject.temp - 273.15
       ).toFixed(2);
-      this.location[actralDataObject.city_name].weather.clouds =
-        actralDataObject.clouds;
-      this.location[actralDataObject.city_name].weather.windSpeed =
-        actralDataObject.wind_spd;
-      this.location[actralDataObject.city_name].weather.windDirection =
-        actralDataObject.wind_cdir_full;
-      this.location[actralDataObject.city_name].weather.visibility =
-        actralDataObject.vis;
-      this.location[actralDataObject.city_name].weather.uvIndex =
-        actralDataObject.uv;
+      this.location[actualDataObject.city_name].weather.clouds =
+        actualDataObject.clouds;
+      this.location[actualDataObject.city_name].weather.windSpeed =
+        actualDataObject.wind_spd;
+      this.location[actualDataObject.city_name].weather.windDirection =
+        actualDataObject.wind_cdir_full;
+      this.location[actualDataObject.city_name].weather.visibility =
+        actualDataObject.vis;
+      this.location[actualDataObject.city_name].weather.uvIndex =
+        actualDataObject.uv;
       this.location[
-        actralDataObject.city_name
-      ].weather.liquidEquivalentPrecipitationRate = actralDataObject.precip;
-      this.location[actralDataObject.city_name].weather.sunrise =
-        actralDataObject.sunrise;
-      this.location[actralDataObject.city_name].weather.sunset =
-        actralDataObject.sunset;
-      this.location[actralDataObject.city_name].weather.feelsLikeTemp =
-        actralDataObject.app_temp;
+        actualDataObject.city_name
+      ].weather.liquidEquivalentPrecipitationRate = actualDataObject.precip;
+      this.location[actualDataObject.city_name].weather.sunrise =
+        actualDataObject.sunrise;
+      this.location[actualDataObject.city_name].weather.sunset =
+        actualDataObject.sunset;
+      this.location[actualDataObject.city_name].weather.feelsLikeTemp =
+        actualDataObject.app_temp;
     },
+
     // get restaruant info
     async getRestaurantsInfo(city, cityID) {
       let response = await axios.get(
@@ -145,6 +149,7 @@ export default {
       );
       this.info = response.data.data;
     },
+
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
         url: weatherURL,
@@ -154,6 +159,7 @@ export default {
         lat: newLat,
         lng: newLon,
       };
+
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
       this.center = marker;

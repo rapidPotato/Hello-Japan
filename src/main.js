@@ -4,7 +4,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import { Tabs, Tab } from "vue-tabs-component";
 import moment from "moment";
 import App from "./App.vue";
-// require("dotenv").config(require("find-config")(".env"));
+
 require("dotenv").config();
 
 Vue.component("tabs", Tabs);
@@ -19,6 +19,7 @@ Vue.use(VueGoogleMaps, {
     libraries: "geometry,drawing,places", // necessary for places input
   },
 });
+
 
 const store = new Vuex.Store({
   state: {
@@ -61,7 +62,6 @@ const store = new Vuex.Store({
     },
     updateRandomQuote: (state, quote) => {
       state.randomQuote = quote;
-      console.log(state.randomQuote);
     },
   },
 });

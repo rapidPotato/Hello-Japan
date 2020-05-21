@@ -66,7 +66,7 @@ export default {
 .coronaDisplay {
   text-align: left;
   line-height: 200%;
-  font-size: 13px;
+  font-size: 15px;
 }
 .coronaHead {
   font-size: 18px;

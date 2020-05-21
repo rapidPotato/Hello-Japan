@@ -14,5 +14,14 @@ export default {
 </script>
 
 <style>
+h1 {
+  font-size: 18px;
+}
+h3 {
+  font-size: 15px;
+}
 
+h6 {
+  font-size: 13px;
+}
 </style>
