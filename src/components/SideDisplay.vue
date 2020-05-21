@@ -11,7 +11,7 @@
       <tab name="Restaurant">
         <RestaurantDisplay />
       </tab>
-      <tab name="Horoscope">
+      <tab name="Quote">
         <HoroscopeDisplay />
       </tab>
       <tab name="Events">

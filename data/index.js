@@ -6,5 +6,6 @@ mapData.weather = require("./cityWeather.json")
 mapData.searchables = require("./searchables.json")
 mapData.restaurants = require("./restaurantInfo.json")
 mapData.corona = require("./corona.json")
+mapData.quote = require("./quote.json")
 
 module.exports = mapData

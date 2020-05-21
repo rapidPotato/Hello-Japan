@@ -195,11 +195,12 @@ export default {
       this.location.Sapporo.lat
     );
     await this.$store.commit("updateInitialWeather", this.location);
+    this.$store.commit("updateWeather",this.location['Tokyo'])
 
     for (const city of cityData["locations"]) {
       let weatherIcon =
-        process.env.VUE_APP_SITE_URL +
-        this.$store.state.initialWeather[city.name]["weather"]["icon"];
+       process.env.VUE_APP_SITE_URL +
+      this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
