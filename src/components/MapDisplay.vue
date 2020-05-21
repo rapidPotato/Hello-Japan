@@ -67,7 +67,7 @@ export default {
   },
 
   mounted() {
-    this.geolocate();
+    // this.geolocate();
   },
   methods: {
     setPlace(place) {
