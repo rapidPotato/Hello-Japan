@@ -66,7 +66,7 @@ export default {
 
   created: function () {
     for (const city of cityData["locations"]) {
-      console.log(city)
+      console.log(city);
       let weatherIcon =
         "http://localhost:8080" +
         this.$store.state.initialWeather[city.name]["weather"]["icon"];

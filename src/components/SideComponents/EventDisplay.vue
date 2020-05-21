@@ -32,7 +32,6 @@ export default {
           const result = {};
           this.restaurantsInfo[city] = result;
           result.address = response.data.data[0].address;
-
           result.name = response.data.data[0].name;
           result.opening = response.data.data[0].open_now_text;
           result.phone = response.data.data[0].phone;
