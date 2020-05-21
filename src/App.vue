@@ -129,7 +129,9 @@ export default {
           result.name = response.data.data[0].name;
           result.opening = response.data.data[0].open_now_text;
           result.phone = response.data.data[0].phone;
-          result.image = response.data.data[0].photo.images.small.url;
+          if(response.data.data[0].photo !== undefined) {
+            result.image = response.data.data[0].photo.images.small.url;
+          }
     },
 
     // get corona info
@@ -229,10 +231,10 @@ export default {
     await this.getRestaurantsInfo("Fukuoka", 14135118);
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
-    await this.$store.commit("updateCurrentRestaurantsInfo", this.restaurantsInfo['Tokyo']);
+    await this.$store.commit("updateCurrentRestaurantInfo", this.restaurantsInfo['Tokyo']);
 
-    console.log(this.$state.store.initialRestaurantInfo)
-    console.log(this.$state.store.currentRestaurantInfo)
+    console.log(this.$store.state.initialRestaurantInfo)
+    console.log(this.$store.state.currentRestaurantInfo)
 
   },
 };
