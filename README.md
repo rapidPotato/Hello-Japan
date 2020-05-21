@@ -4,7 +4,7 @@
 
 Hello Japan, is a one-stop dashboard to start your day smoothly!
 
-I'm sure you've had those mornings where you're bombarded with a chaos of data 🤮 The information we want delivered to us, from news and weather to daily memes, is scattered across different apps! So we find ourselves opening and closing multiple apps just to get that little piece of information... 
+I'm sure you've had those mornings where you're bombarded with a chaos of data 🌪 The information we want delivered to us, from news and weather to daily memes, is scattered across different apps! So we find ourselves opening and closing multiple apps just to get that little piece of information... 
 
 Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that displayed **all** the information we needed? Yeah, we thought so too! And that's why we created this app, so you can surf the waves smoothly and simply 🌱
 
@@ -14,15 +14,12 @@ Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that di
 ```
 yarn install
 ```
-**2.** Get your API key 🔑 from [Rakuten Rapid](https://api.rakuten.co.jp/en/) API and [Google Maps]()
+**2.** Get your API key 🔑 from [Rakuten Rapid](https://api.rakuten.co.jp/en/) API and [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+**3.** Create a `.env` file and store your API keys there:
 ```
-VUE_APP_GAPIKEY=[place your ]
-VUE_APP_GAPIKEY
-```
-**3.** Create a `.env` file and fill it with the following:
-```
-VUE_APP_GAPIKEY=[place your ]
-VUE_APP_GAPIKEY
+VUE_APP_GAPIKEY=[Your Google API Key goes here!]
+VUE_APP_GAPIKEY=[Your Rakuten Rapid API Key goes here!]
 ```
 ```
 yarn serve
