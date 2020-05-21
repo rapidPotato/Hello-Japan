@@ -1,8 +1,8 @@
 <template>
   <div id="SideDisplay">
     <!-- <h1> This is the Side Display </h1> -->
-    <tabs>
-      <tab name="Weather">
+    <tabs class="tabs">
+      <tab class="single-tab" name="Weather">
         <WeatherDisplay />
       </tab>
       <tab name="Health">
@@ -41,4 +41,7 @@ export default {
 </script>
 
 <style scoped>
+.single-tab {
+  color: rgb(14, 80, 80);
+}
 </style>
