@@ -8,7 +8,12 @@
       </label>
     </div>
     <br />
-    <gmap-map :center="center" :zoom="4" style="width:90%;  height: 500px;" :options="options">
+    <gmap-map
+      :center="center"
+      :zoom="4"
+      style="width:90%;  height: 500px;"
+      :options="options"
+    >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
@@ -20,7 +25,7 @@
           scaledSize: scaledSize,
           size: size,
         }"
-        @click="center = m.position, updateCity(m.cityName)"
+        @click="(center = m.position), updateCity(m.cityName)"
       ></gmap-marker>
     </gmap-map>
   </div>
@@ -45,15 +50,19 @@ export default {
       places: [],
       currentPlace: null,
       mapWeatherObj: {
-        Sun: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
+        Sun:
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-sunny.svg",
         Snow: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-snow.svg",
-        Rain: "https://hellojapanapp-cc.herokuapp.com/icons/weatherbitIcons/r01d.png",
-        Lightning: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
-        Clouds: "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg"
+        Rain:
+          "https://hellojapanapp-cc.herokuapp.com/icons/weatherbitIcons/r01d.png",
+        Lightning:
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
+        Clouds:
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
       },
       options: {
-        styles: mapStyles
-      }
+        styles: mapStyles,
+      },
     };
   },
   // mounted() {
@@ -92,12 +101,12 @@ export default {
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       console.log(cityName, weatherURL);
       let image = {
-        url: weatherURL
+        url: weatherURL,
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon
+        lng: newLon,
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
@@ -107,25 +116,25 @@ export default {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
+          lng: this.currentPlace.geometry.location.lng(),
         };
         // console.log(marker.lat, marker.lng)
 
         // look up weather so we can convert it to icon
         //TODO: should call weather API for weather icon code
         const weatherIcon = cityData.weather.filter(
-          city => city.name === this.currentPlace.name
+          (city) => city.name === this.currentPlace.name
         )[0].mapWeather;
         //TODO: should use icon code from api to get image
         const weatherURL = this.mapWeatherObj[weatherIcon];
         const image = {
-          url: weatherURL
+          url: weatherURL,
         };
 
         this.markers.push({
           position: marker,
           icon: image,
-          cityName: this.currentPlace.name
+          cityName: this.currentPlace.name,
         });
         this.places.push(this.currentPlace);
         this.center = marker;
@@ -133,14 +142,14 @@ export default {
       }
     },
     geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
