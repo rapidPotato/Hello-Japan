@@ -41,34 +41,33 @@ export default {
       location: {
         Tokyo: {
           lon: 139.6503,
-          lat: 35.6762
+          lat: 35.6762,
         },
         Osaka: {
           lon: 135.5023,
-          lat: 34.6937
+          lat: 34.6937,
         },
         Naha: {
           lon: 127.679,
-          lat: 26.2126
+          lat: 26.2126,
         },
         Sendai: {
           lon: 140.8694,
-          lat: 38.2682
+          lat: 38.2682,
         },
         Fukuoka: {
           lon: 130.4017,
-          lat: 33.5902
+          lat: 33.5902,
         },
         Sapporo: {
           lat: 43.0618,
-          lon: 141.3545
-        }
+          lon: 141.3545,
+        },
       },
       markers: [],
       places: [],
       // this if for restaurant data
       restaurantsInfo: {},
-
     };
   },
   methods: {
@@ -78,8 +77,8 @@ export default {
         {
           headers: {
             "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
-          }
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
+          },
         }
       );
 
@@ -118,78 +117,94 @@ export default {
 
     // get restaruant info
     async getRestaurantsInfo(city, cityID) {
-        let response = await axios.get(
-          `https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=1&currency=USD&lang=en_US&location_id=${cityID}`,
-          {
-            headers: {
-              "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-            },
-          }
-        )
-          const result = {};
-          console.log(response, 'Restaurant Data')
-          this.restaurantsInfo[city] = result;
-          result.address = response.data.data[0].address;
-          result.name = response.data.data[0].name;
-          result.opening = response.data.data[0].open_now_text;
-          result.phone = response.data.data[0].phone;
-          if(response.data.data[0].photo !== undefined) {
-            result.image = response.data.data[0].photo.images.small.url;
-          }
+      let response = await axios.get(
+        `https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=1&currency=USD&lang=en_US&location_id=${cityID}`,
+        {
+          headers: {
+            "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
+          },
+        }
+      );
+      const result = {};
+      this.restaurantsInfo[city] = result;
+      result.address = response.data.data[0].address;
+      result.name = response.data.data[0].name;
+      result.opening = response.data.data[0].open_now_text;
+      result.phone = response.data.data[0].phone;
+      if (response.data.data[0].photo !== undefined) {
+        result.image = response.data.data[0].photo.images.small.url;
+      }
     },
 
     // get corona info
     async getCoronaInfo() {
       let response = await axios.get(
-          "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
-          {
-            headers: {
-              "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-            },
-          }
-        )
-          this.info = response.data.data
+        "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
+        {
+          headers: {
+            "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
+          },
+        }
+      );
+      this.info = response.data.data;
     },
 
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL
+        url: weatherURL,
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon
+        lng: newLon,
       };
 
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
       this.center = marker;
       this.$store.commit("updateMarkers", this.markers);
-    }
+    },
+    async getQuote() {
+      return await axios.get("https://quotes21.p.rapidapi.com/quote", {
+        headers: {
+          "x-rapidapi-host": "quotes21.p.rapidapi.com",
+          "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
+        },
+      });
+    },
   },
-
   created: async function() {
+    const quote = await this.getQuote();
+    this.$store.commit("updateRandomQuote", quote.data);
     // fetch weather info
     await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
     await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
-    await this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
+    await this.getWeatherInfo(
+      this.location.Fukuoka.lon,
+      this.location.Fukuoka.lat
+    );
     await this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
-    await this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
-    await this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
+    await this.getWeatherInfo(
+      this.location.Sendai.lon,
+      this.location.Sendai.lat
+    );
+    await this.getWeatherInfo(
+      this.location.Sapporo.lon,
+      this.location.Sapporo.lat
+    );
     await this.$store.commit("updateInitialWeather", this.location);
 
-
     for (const city of cityData["locations"]) {
-      let weatherIcon = `${process.env.VUE_APP_SITEURL}${this.$store.state.initialWeather[city.name]["weather"]["icon"]}`;
-      console.log('weatherIcon:', weatherIcon)
+      let weatherIcon =
+        process.env.VUE_APP_SITE_URL +
+        this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
     await this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
-
     // fetch restaurant info
     await this.getRestaurantsInfo("Tokyo", 14133667);
     await this.getRestaurantsInfo("Osaka", 14135010);
@@ -198,8 +213,10 @@ export default {
     await this.getRestaurantsInfo("Fukuoka", 14135118);
     await this.getRestaurantsInfo("Sapporo", 298560);
     await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
-    await this.$store.commit("updateCurrentRestaurantInfo", this.restaurantsInfo['Tokyo']);
-
+    await this.$store.commit(
+      "updateCurrentRestaurantInfo",
+      this.restaurantsInfo["Tokyo"]
+    );
   },
 };
 </script>

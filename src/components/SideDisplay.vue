@@ -8,14 +8,14 @@
       <tab name="Health">
         <CoronaDisplay />
       </tab>
-      <tab name="Events">
-        <EventDisplay />
-      </tab>
       <tab name="Restaurant">
         <RestaurantDisplay />
       </tab>
       <tab name="Horoscope">
         <HoroscopeDisplay />
+      </tab>
+      <tab name="Events">
+        <EventDisplay />
       </tab>
     </tabs>
   </div>

@@ -7,7 +7,6 @@ import App from "./App.vue";
 
 require("dotenv").config();
 
-
 Vue.component("tabs", Tabs);
 Vue.component("tab", Tab);
 Vue.prototype.moment = moment;
@@ -29,6 +28,7 @@ const store = new Vuex.Store({
     initialWeather: {},
     coronaInfo: {},
     // restaurantInfo: {},
+    randomQuote: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
@@ -56,8 +56,12 @@ const store = new Vuex.Store({
     updateRestaurantsInfo: (state, restaruantInfoObj) => {
       state.initialRestaurantInfo = restaruantInfoObj;
     },
-    updateCurrentRestaurantInfo: (state, restaurantInfoObj) => {
+    updateCurrentRestaurantsInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
+    },
+    updateRandomQuote: (state, quote) => {
+      state.randomQuote = quote;
+      console.log(state.randomQuote);
     },
   },
 });
