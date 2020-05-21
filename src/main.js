@@ -32,8 +32,12 @@ const store = new Vuex.Store({
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
     markers: [],
+    quote: {},
   },
   mutations: {
+    updateQuote: (state, quote) => {
+      state.quote = quote;
+    },
     updateCity: (state, newCity) => {
       state.currentCity = newCity;
     },
@@ -46,16 +50,13 @@ const store = new Vuex.Store({
     updateInitialWeather: (state, weatherObj) => {
       state.initialWeather = weatherObj;
     },
-    updateInitialRestaurantInfo: (state, initialRestaurantObj) => {
-      state.initialRestaurantInfo = initialRestaurantObj;
-    },
     updateCoronaInfo: (state, coronaInfoObj) => {
       state.coronaInfo = coronaInfoObj;
     },
     updateRestaurantsInfo: (state, restaruantInfoObj) => {
       state.initialRestaurantInfo = restaruantInfoObj;
     },
-    updateCurrentRestaurantsInfo: (state, restaurantInfoObj) => {
+    updateCurrentRestaurantInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;
     },
     updateRandomQuote: (state, quote) => {
