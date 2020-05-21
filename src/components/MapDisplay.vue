@@ -60,9 +60,20 @@ export default {
   //   this.geolocate();
   // },
 
+<<<<<<< HEAD
   created: function() {
     console.log(this.$store.state);
     for (const city of cityData.locations) {
+=======
+  mounted() {
+    this.geolocate();
+  },
+
+  created: function () {
+    // console.log(this.$store.state.initialWeather)
+    for (const city of cityData["locations"]) {
+      // console.log(city,'in map.vue created')
+>>>>>>> e5d0072edcdb7e29d97537000ee7e39305a404f9
       let weatherIcon =
         "http://localhost:8080" +
         cityData["weather"][city.name]["weather"]["icon"];
@@ -76,9 +87,17 @@ export default {
       this.currentPlace = place;
     },
     updateCity(newCity) {
+<<<<<<< HEAD
       let newWeather = cityData["weather"][newCity];
+=======
+      let newWeather = this.$store.state.initialWeather[newCity];
+      let newRestaurant = this.$store.state.initialRestaurantInfo[newCity];
+      console.log(this.$store.state.initialRestaurantInfo)
+>>>>>>> e5d0072edcdb7e29d97537000ee7e39305a404f9
       this.$store.commit("updateCity", newCity);
       this.$store.commit("updateWeather", newWeather);
+      this.$store.commit("updateRestaurantInfo", newRestaurant);
+      // console.log(this.$store.state.currentWeather)
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       console.log(cityName, weatherURL);

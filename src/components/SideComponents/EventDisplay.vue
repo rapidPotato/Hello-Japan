@@ -1,6 +1,7 @@
 <template>
   <div id="EventDisplay">
-    <h1> This is the Event Display </h1>
+    <h1> Coming Soon! </h1>
+    <h20> After the State of Emergency </h20>
   </div>
 </template>
 
@@ -11,12 +12,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2a3642;
-  margin-top: 60px;
-}
+
 </style>
