@@ -20,7 +20,7 @@ import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
 import axios from "axios";
 import cityData from "../data/index.js";
-
+import "dotenv/config";
 
 export default {
   name: "App",
@@ -78,9 +78,7 @@ export default {
           const actralDataObject = response.data.data[0];
           this.location[actralDataObject.city_name].weather =
             actralDataObject.weather;
-          this.location[
-            actralDataObject.city_name
-          ].weather.icon = `/icons/${
+          this.location[actralDataObject.city_name].weather.icon = `/icons/${
             this.location[actralDataObject.city_name].weather.icon
           }.png`;
           this.location[actralDataObject.city_name].weather.temp = (
@@ -112,7 +110,7 @@ export default {
     },
   },
 
-  created: function () {
+  created: function() {
     this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
     this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
     this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
@@ -121,14 +119,16 @@ export default {
     this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
     // this.$store.commit("updateInitialWeather", this.location);
     // this.$store.commit("updateWeather",this.location['Tokyo'])
-    this.$store.commit("updateInitialWeather", cityData['weather']);
-    this.$store.commit("updateCity",'Tokyo')
-    this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
-    this.$store.commit("updateRestaurantInfo",cityData['restaurants']['Tokyo'])
-    this.$store.commit("updateInitialRestaurantInfo",cityData['restaurants'])
-    console.log(cityData['restaurants']['Tokyo'])
-    console.log(this.$store.state)
-
+    this.$store.commit("updateInitialWeather", cityData["weather"]);
+    this.$store.commit("updateCity", "Tokyo");
+    this.$store.commit("updateWeather", cityData["weather"]["Tokyo"]);
+    this.$store.commit(
+      "updateRestaurantInfo",
+      cityData["restaurants"]["Tokyo"]
+    );
+    this.$store.commit("updateInitialRestaurantInfo", cityData["restaurants"]);
+    console.log(cityData["restaurants"]["Tokyo"]);
+    console.log(this.$store.state);
   },
 };
 </script>
@@ -223,7 +223,7 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     padding: 1.5em 2em;
   }
 }

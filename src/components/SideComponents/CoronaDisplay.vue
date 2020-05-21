@@ -6,6 +6,7 @@
 
 <script>
 import axios from "axios";
+import "dotenv/config";
 
 export default {
   name: "CoronaDisplay",
@@ -23,8 +24,7 @@ export default {
           {
             headers: {
               "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
-              "x-rapidapi-key":
-                process.env.VUE_APP_RAPIKEY,
+              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
             },
           }
         )
@@ -40,7 +40,7 @@ export default {
     },
   },
 
-  created: function () {
+  created: function() {
     this.getCoronaInfo();
     this.$store.commit("updateCoronaInfo", this.info);
   },
