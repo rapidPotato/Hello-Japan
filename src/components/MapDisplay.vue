@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div>
-      <h5>Search and add a pin</h5>
+    <div class="row">
+      <div class="col-12">
+      <!-- <h5>Search and add a pin</h5>
       <label>
         <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
         <button @click="addMarkerFromSearch">Add</button>
-      </label>
-    </div>
+      </label> -->
     <br />
     <gmap-map
       :center="center"
-      :zoom="4"
-      style="width:90%;  height: 500px;"
+      :zoom="5"
+      style="width:100%;  height: 500px;"
       :options="options"
     >
       <gmap-marker
         :key="index"
-        v-for="(m, index) in markers"
+        v-for="(m, index) in this.$store.state.markers"
         :position="m.position"
         :icon="{
           url: m.icon.url,
@@ -28,12 +28,15 @@
         @click="(center = m.position), updateCity(m.cityName)"
       ></gmap-marker>
     </gmap-map>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
 import cityData from "../../data/index.js";
 import mapStyles from "../../public/mapStyles.json";
+
 
 export default {
   name: "MapDisplay",
@@ -70,14 +73,18 @@ export default {
     this.geolocate();
   },
 
-  created: function() {
-    for (const city of cityData["locations"]) {
-      let weatherIcon =
-        "http://localhost:8080" +
-        cityData["weather"][city.name]["weather"]["icon"];
-      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
-    }
-  },
+  // created: function() {
+  //   // // console.log(this.$store.state.initialWeather)
+  //   // for (const city of cityData["locations"]) {
+  //   //   // console.log(city,'in map.vue created')
+  //   //   console.log(this.$store.state.initialWeather);
+  //   //   console.log(city.name, "In Map.view");
+  //   //   let weatherIcon =
+  //   //     "http://localhost:8080" +
+  //   //     this.$store.state.initialWeather[city.name]["weather"]["icon"];
+  //   //   this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+  //   // }
+  // },
 
   methods: {
     setPlace(place) {
@@ -92,12 +99,12 @@ export default {
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon,
+        lng: newLon
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
@@ -107,7 +114,7 @@ export default {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
+          lng: this.currentPlace.geometry.location.lng()
         };
 
         // look up weather so we can convert it to icon
@@ -135,11 +142,11 @@ export default {
       navigator.geolocation.getCurrentPosition((position) => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

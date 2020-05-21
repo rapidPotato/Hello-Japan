@@ -7,10 +7,10 @@
       <Clock id="Clock" />
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
         <MapDisplay />
       </div>
-      <div class="col-6">
+      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
         <SideDisplay id="SideDisplay" />
       </div>
     </div>
@@ -23,7 +23,9 @@ import SideDisplay from "./components/SideDisplay.vue";
 import PageTitle from "./components/PageTitle.vue";
 import Clock from "./components/Clock.vue";
 import axios from "axios";
-import "dotenv/config";
+import cityData from "../data/index.js";
+
+require("dotenv").config();
 
 export default {
   name: "App",
@@ -39,76 +41,83 @@ export default {
       location: {
         Tokyo: {
           lon: 139.6503,
-          lat: 35.6762,
+          lat: 35.6762
         },
         Osaka: {
           lon: 135.5023,
-          lat: 34.6937,
+          lat: 34.6937
         },
         Naha: {
           lon: 127.679,
-          lat: 26.2126,
+          lat: 26.2126
         },
         Sendai: {
           lon: 140.8694,
-          lat: 38.2682,
+          lat: 38.2682
         },
         Fukuoka: {
           lon: 130.4017,
-          lat: 33.5902,
+          lat: 33.5902
         },
         Sapporo: {
           lat: 43.0618,
-          lon: 141.3545,
-        },
+          lon: 141.3545
+        }
       },
+      markers: [],
+      places: [],
       // this if for restaurant data
       restaurantsInfo: {},
+
     };
   },
-
   methods: {
-    // for getting weather
-    getWeatherInfo(lon, lat) {
-      axios
-        .get(
-          `https://weatherbit-v1-mashape.p.rapidapi.com/current?units=S&lang=undefined&lon=${lon}&lat=${lat}`,
-          {
-            headers: {
-              "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-              "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-            },
+    async getWeatherInfo(lon, lat) {
+      let response = await axios.get(
+        `https://weatherbit-v1-mashape.p.rapidapi.com/current?units=S&lang=undefined&lon=${lon}&lat=${lat}`,
+        {
+          headers: {
+            "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
           }
-        )
-        .then((response) => {
-          const actralDataObject = response.data.data[0];
-          let result = {};
-          result = actralDataObject.weather;
+        }
+      );
 
-          result.temp = (actralDataObject.temp - 273.15).toFixed(2);
+      const actualDataObject = response.data.data[0];
 
-          result.clouds = actralDataObject.clouds;
-          result.windSpeed = actralDataObject.wind_spd;
-          result.windDirection = actralDataObject.wind_cdir_full;
-          result.visibility = actralDataObject.vis;
-          result.uvIndex = actralDataObject.uv;
-          result.liquidEquivalentPrecipitationRate = actralDataObject.precip;
-          result.sunrise = actralDataObject.sunrise;
-          result.sunset = actralDataObject.sunset;
-          result.feelsLikeTemp = actralDataObject.app_temp;
-
-          result.icon = `/icons/${result.icon}.png`;
-          this.location.weather = result;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // pull each of the responses key's value into the ActualDataObject
+      this.location[actualDataObject.city_name].weather =
+        actualDataObject.weather;
+      this.location[actualDataObject.city_name].weather.icon = `/icons/${
+        this.location[actualDataObject.city_name].weather.icon
+      }.png`;
+      this.location[actualDataObject.city_name].weather.temp = (
+        actualDataObject.temp - 273.15
+      ).toFixed(2);
+      this.location[actualDataObject.city_name].weather.clouds =
+        actualDataObject.clouds;
+      this.location[actualDataObject.city_name].weather.windSpeed =
+        actualDataObject.wind_spd;
+      this.location[actualDataObject.city_name].weather.windDirection =
+        actualDataObject.wind_cdir_full;
+      this.location[actualDataObject.city_name].weather.visibility =
+        actualDataObject.vis;
+      this.location[actualDataObject.city_name].weather.uvIndex =
+        actualDataObject.uv;
+      this.location[
+        actualDataObject.city_name
+      ].weather.liquidEquivalentPrecipitationRate = actualDataObject.precip;
+      this.location[actualDataObject.city_name].weather.sunrise =
+        actualDataObject.sunrise;
+      this.location[actualDataObject.city_name].weather.sunset =
+        actualDataObject.sunset;
+      this.location[actualDataObject.city_name].weather.feelsLikeTemp =
+        actualDataObject.app_temp;
     },
 
     // get restaruant info
-    getRestaurantsInfo(city, cityID) {
-      axios
-        .get(
+    async getRestaurantsInfo(city, cityID) {
+        let response = await axios.get(
           `https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=1&currency=USD&lang=en_US&location_id=${cityID}`,
           {
             headers: {
@@ -117,7 +126,6 @@ export default {
             },
           }
         )
-        .then((response) => {
           const result = {};
           this.restaurantsInfo[city] = result;
           result.address = response.data.data[0].address;
@@ -125,16 +133,11 @@ export default {
           result.opening = response.data.data[0].open_now_text;
           result.phone = response.data.data[0].phone;
           result.image = response.data.data[0].photo.images.small.url;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
 
     // get corona info
-    getCoronaInfo() {
-      axios
-        .get(
+    async getCoronaInfo() {
+      let response = await axios.get(
           "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
           {
             headers: {
@@ -143,40 +146,104 @@ export default {
             },
           }
         )
-        .then((response) => {
+
           this.info.total_cases = response.data.data.summary.total_cases;
           this.info.deaths = response.data.data.summary.deaths;
           this.info.death_ratio =
             parseFloat(response.data.data.summary.death_ratio).toFixed(2) + "%";
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
+
+    addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
+      let image = {
+        url: weatherURL
+      };
+
+      const marker = {
+        lat: newLat,
+        lng: newLon
+      };
+
+      this.markers.push({ position: marker, icon: image, cityName: cityName });
+      this.places.push(this.currentPlace);
+      this.center = marker;
+      this.$store.commit("updateMarkers", this.markers);
+    }
   },
 
-  created: function() {
+  // created: async function() {
+  //   await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
+  //   await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
+  //   await this.getWeatherInfo(
+  //     this.location.Fukuoka.lon,
+  //     this.location.Fukuoka.lat
+  //   );
+  //   await this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
+  //   await this.getWeatherInfo(
+  //     this.location.Sendai.lon,
+  //     this.location.Sendai.lat
+  //   );
+  //   await this.getWeatherInfo(
+  //     this.location.Sapporo.lon,
+  //     this.location.Sapporo.lat
+  //   );
+
+  //   await this.$store.commit("updateInitialWeather", this.location);
+  //   await this.$store.commit("updateWeather", this.location["Tokyo"]);
+  //   // this.$store.commit("updateInitialWeather", cityData['weather']);
+  //   // this.$store.commit("updateWeather",cityData['weather']['Tokyo'])
+  //   await this.$store.commit("updateCity", "Tokyo");
+  //   await this.$store.commit(
+  //     "updateRestaurantInfo",
+  //     cityData["restaurants"]["Tokyo"]
+  //   );
+  //   await this.$store.commit(
+  //     "updateInitialRestaurantInfo",
+  //     cityData["restaurants"]
+  //   );
+  //   await this.$store.commit("updateCoronaInfo", cityData["corona"]);
+
+  //   for (const city of cityData["locations"]) {
+  //     let weatherIcon =
+  //       "http://localhost:8080" +
+  //       this.$store.state.initialWeather[city.name]["weather"]["icon"];
+  //     this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+  //   }
+  // }
+
+  created: async function() {
     // fetch weather info
-    this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
-    this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
-    this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
-    this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
-    this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
-    this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
-    this.$store.commit("updateInitialWeather", this.location);
+    await this.getWeatherInfo(this.location.Tokyo.lon, this.location.Tokyo.lat);
+    await this.getWeatherInfo(this.location.Osaka.lon, this.location.Osaka.lat);
+    await this.getWeatherInfo(this.location.Fukuoka.lon, this.location.Fukuoka.lat);
+    await this.getWeatherInfo(this.location.Naha.lon, this.location.Naha.lat);
+    await this.getWeatherInfo(this.location.Sendai.lon, this.location.Sendai.lat);
+    await this.getWeatherInfo(this.location.Sapporo.lon, this.location.Sapporo.lat);
+    await this.$store.commit("updateInitialWeather", this.location);
+    console.log('this.location:', this.location)
+
 
     // fetch restaurant info
-    this.getRestaurantsInfo("Tokyo", 14133667);
-    this.getRestaurantsInfo("Osaka", 14135010);
-    this.getRestaurantsInfo("Naha", 298224);
-    this.getRestaurantsInfo("Sendai", 298249);
-    this.getRestaurantsInfo("Fukuoka", 14135118);
-    this.getRestaurantsInfo("Sapporo", 298560);
-    this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
+    await this.getRestaurantsInfo("Tokyo", 14133667);
+    await this.getRestaurantsInfo("Osaka", 14135010);
+    await this.getRestaurantsInfo("Naha", 298224);
+    await this.getRestaurantsInfo("Sendai", 298249);
+    await this.getRestaurantsInfo("Fukuoka", 14135118);
+    await this.getRestaurantsInfo("Sapporo", 298560);
+    await this.$store.commit("updateRestaurantsInfo", this.restaurantsInfo);
+    console.log('this.restaurantsInfo:', this.restaurantsInfo)
 
     // fetch corona info
-    this.getCoronaInfo();
-    this.$store.commit("updateCoronaInfo", this.info);
+    await this.getCoronaInfo();
+    await this.$store.commit("updateCoronaInfo", this.info);
+    console.log('this.info:', this.info)
+
+
+    for (const city of cityData["locations"]) {
+      let weatherIcon =
+      "https://hellojapanapp-cc.herokuapp.com/" +
+      this.$store.state.initialWeather[city.name]["weather"]["icon"];
+      this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
+    }
   },
 };
 </script>
@@ -258,7 +325,7 @@ export default {
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 00.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     padding: 1.5em 2em;
   }
 }

@@ -2,11 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as VueGoogleMaps from "vue2-google-maps";
 import { Tabs, Tab } from "vue-tabs-component";
-import "dotenv/config"
-// require("dotenv").config(require("find-config")(".env"));
 import moment from "moment";
 import App from "./App.vue";
-console.log(process.env)
+import VueDarkMode from '@growthbunker/vuedarkmode';
+
+require("dotenv").config();
 
 
 Vue.component("tabs", Tabs);
@@ -21,6 +21,20 @@ Vue.use(VueGoogleMaps, {
     libraries: "geometry,drawing,places", // necessary for places input
   },
 });
+Vue.use(VueDarkMode, {
+  // Specify the theme to use: dark or light (dark by default).
+  theme: "dark",
+
+  // Specify the components to declare globally in your project
+  // When undefined, null or given an empty array, all components will be imported
+  components: [
+    // Base components
+    "alert", "avatar", "badge", "button", "divider", "heading", "icon",  "progress-bar",  "spinner",
+
+    // Field components
+    "checkbox", "file", "image-uploader", "input", "input-numeric", "label", "message", "radios", "select", "tabs", "textarea", "toggle"
+  ]
+});
 
 const store = new Vuex.Store({
   state: {
@@ -32,10 +46,14 @@ const store = new Vuex.Store({
     horoscopeInfo: {},
     currentRestaurantInfo: {},
     initialRestaurantInfo: {},
+    markers: [],
   },
   mutations: {
     updateCity: (state, newCity) => {
       state.currentCity = newCity;
+    },
+    updateMarkers: (state, markers) => {
+      state.markers = markers;
     },
     updateWeather: (state, newWeather) => {
       state.currentWeather = newWeather;
@@ -48,7 +66,6 @@ const store = new Vuex.Store({
     },
     updateCoronaInfo: (state, coronaInfoObj) => {
       state.coronaInfo = coronaInfoObj;
-      // console.log("####CORONA INFO", state.coronaInfo);
     },
     updateRestaurantsInfo: (state, restaruantInfoObj) => {
       state.restaurantInfo = restaruantInfoObj;

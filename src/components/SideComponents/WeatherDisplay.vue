@@ -1,6 +1,6 @@
 <template>
   <div id="WeatherDisplay">
-    <div class = 'weatherHead'> Your Daily Weather Report for {{this.$store.state.currentCity}} </div>
+    <div class = 'weatherHead'> <b> Your Daily Weather Report for {{this.$store.state.currentCity}} </b></div>
     <div class = 'weatherDisplay'> <b> Current Temperature: </b>{{ Math.round(this.$store.state.currentWeather.weather.temp) }} &#176;C </div>
     <div class = 'weatherDisplay'> <b>Feels like:</b> {{ Math.round(this.$store.state.currentWeather.weather.feelsLikeTemp) - 273 }} &#176;C</div>
     <div class = 'weatherDisplay'><b>Window Weather:</b> {{ this.$store.state.currentWeather.weather.description }} </div>

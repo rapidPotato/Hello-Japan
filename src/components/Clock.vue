@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 p {
-    margin-bottom: 50px;
+    margin-bottom: 5%;
     color: rgb(74, 155, 155);
 }
 
