@@ -20,7 +20,7 @@
         <p>{{this.$store.state.currentRestaurantInfo.phone}}</p>
       </div>
       <div class="col-6">
-        <img :src="this.$store.state.currentRestaurantInfo.image" />
+        <img class="rest-pic" :src="this.$store.state.currentRestaurantInfo.image" />
       </div>
     </div>
   </div>
@@ -40,15 +40,16 @@ h6 {
   font-weight: bold;
   padding: 0em 0em 0.5em;
 }
-h5 {
+h3 {
   font-size: 18px;
+  font-weight: bold;
 }
 
 p {
   font-size: 15px;
 }
 
-img {
+.rest-pic {
   border-radius: 50%;
   border: 5px solid #1da0a0;
 }
