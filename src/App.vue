@@ -280,14 +280,20 @@ export default {
     border-bottom: solid 1px #fff;
     z-index: 2;
     transform: translateY(0);
+    background-color: rgb(238, 251, 252);
   }
 }
 .tabs-component-tab-a {
   align-items: center;
-  color: inherit;
+  color: rgb(66, 134, 136);
   display: flex;
   padding: 0.75em 1em;
   text-decoration: none;
+}
+.tabs-component-tab-a:hover {
+  text-decoration: none;
+  color: rgb(66, 134, 136);
+  background-color: rgb(223, 246, 247);
 }
 .tabs-component-panels {
   padding: 4em 0;
