@@ -1,4 +1,4 @@
-# 👋 Hello Japan
+# Hello Japan 🇯🇵
 ###### This was made during our time as students at Code Chrysalis
 ![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/screenshot.png)
 
@@ -35,3 +35,6 @@ VUE_APP_RAPIKEY=[Your Rakuten Rapid API Key goes here!]
 ```
 yarn serve
 ```
+
+
+Made with ♥️ by rapidPotato
