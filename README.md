@@ -3,7 +3,7 @@
 ![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/screenshot.png)
 
 
-### Checkout our app, it's been deployed! 👉 [**Hello Japan**](https://hellojapanapp-cc.herokuapp.com/) 🎊
+### Checkout our app, it's been deployed! 👉 [**Hello Japan**](https://hellojapanapp-cc.herokuapp.com/) 👈
 
 ## A Little Introduction
 
