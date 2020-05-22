@@ -2,7 +2,7 @@
 Deployed on Heroku: [Hello Japan](https://hellojapanapp-cc.herokuapp.com/)
 ###### This was made during our time as students at Code Chrysalis
 
-![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/../../../public/images/screenshot.png)
+![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/screenshot.png)
 
 Hello Japan, is a one-stop dashboard to start your day smoothly!
 
@@ -30,4 +30,4 @@ yarn serve
 
 By the way, the website also works on mobile! Check it out on your phone 🥳
 
-![Homepage](https://hellojapanapp-cc.herokuapp.com/images/../../../public/images/gif.gif)
+![Homepage](https://hellojapanapp-cc.herokuapp.com/images/gif.gif)
