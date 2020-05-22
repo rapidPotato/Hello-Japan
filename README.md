@@ -1,6 +1,8 @@
 # 👋 Hello Japan
+Deployed on Heroku: [Hello Japan](https://hellojapanapp-cc.herokuapp.com/)
 ###### This was made during our time as students at Code Chrysalis
 
+![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/../../../public/images/screenshot.png)
 
 Hello Japan, is a one-stop dashboard to start your day smoothly!
 
@@ -25,3 +27,7 @@ VUE_APP_RAPIKEY=[Your Rakuten Rapid API Key goes here!]
 ```
 yarn serve
 ```
+
+By the way, the website also works on mobile! Check it out on your phone 🥳
+
+![Homepage](https://hellojapanapp-cc.herokuapp.com/images/../../../public/images/gif.gif)
