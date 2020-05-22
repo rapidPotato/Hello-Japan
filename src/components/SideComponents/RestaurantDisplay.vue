@@ -1,27 +1,58 @@
 <template>
-  <div id="RestaurantDisplay" class="restaurantDisplay">
-    <h5> {{this.$store.state.currentRestaurantInfo.name}} </h5>
-    <img :src = this.$store.state.currentRestaurantInfo.image /> <br>
-    <h6> Availibility: {{this.$store.state.currentRestaurantInfo.opening}} </h6> <br>
-    <h6> {{this.$store.state.currentRestaurantInfo.address}} </h6> <br>
-    <h6> {{this.$store.state.currentRestaurantInfo.phone}} </h6>
+  <div id="RestaurantDisplay">
+    <div class="restaurantDisplay row">
+      <div class="col-12">
+        <h3>{{this.$store.state.currentRestaurantInfo.name}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h6>Availibility:</h6>
+        <br />
+        <p>{{this.$store.state.currentRestaurantInfo.opening}}</p>
+        <br />
+        <h6>Address:</h6>
+        <br />
+        <p>{{this.$store.state.currentRestaurantInfo.address}}</p>
+        <br />
+        <h6>Phone:</h6>
+        <br />
+        <p>{{this.$store.state.currentRestaurantInfo.phone}}</p>
+      </div>
+      <div class="col-6">
+        <img class="rest-pic" :src="this.$store.state.currentRestaurantInfo.image" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'RestaurantDisplay'
-}
+  name: "RestaurantDisplay"
+};
 </script>
 
 <style>
 h6 {
-    text-align : left;
-    line-height: 200% ;
-    font-size: 15px;
-    padding: 0em 0em .5em;
+  text-align: left;
+  line-height: 200%;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0em 0em 0.5em;
 }
-h5 {
+h3 {
   font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 15px;
+  margin-top: -20px;
+}
+
+.rest-pic {
+  border-radius: 50%;
+  border: 5px solid #1da0a0;
 }
 </style>
