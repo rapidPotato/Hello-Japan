@@ -1,14 +1,22 @@
 # 👋 Hello Japan
-Deployed on Heroku: [Hello Japan](https://hellojapanapp-cc.herokuapp.com/)
 ###### This was made during our time as students at Code Chrysalis
-
 ![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/screenshot.png)
+
+
+### Checkout our app, it's been deployed! 👉 [**Hello Japan**](https://hellojapanapp-cc.herokuapp.com/) 🎊
+
+## A Little Introduction
 
 Hello Japan, is a one-stop dashboard to start your day smoothly!
 
 I'm sure you've had those mornings where you're bombarded with a chaos of data 🌪 The information we want delivered to us, from news and weather to daily memes, is scattered across different apps! So we find ourselves opening and closing multiple apps just to get that little piece of information... 
 
 Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that displayed **all** the information we needed? Yeah, we thought so too! And that's why we created this app, so you can surf the waves smoothly and simply 🌱
+
+
+**By the way, it looks just as beautiful on mobile! So check it out on your phone too! 👍**
+
+![Homepage](https://hellojapanapp-cc.herokuapp.com/images/gif.gif)
 
 
 ## Steps to Setting Up!
@@ -27,7 +35,3 @@ VUE_APP_RAPIKEY=[Your Rakuten Rapid API Key goes here!]
 ```
 yarn serve
 ```
-
-By the way, the website also works on mobile! Check it out on your phone 🥳
-
-![Homepage](https://hellojapanapp-cc.herokuapp.com/images/gif.gif)
