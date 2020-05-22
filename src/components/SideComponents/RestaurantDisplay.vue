@@ -43,10 +43,12 @@ h6 {
 h3 {
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 p {
   font-size: 15px;
+  margin-top: -20px;
 }
 
 .rest-pic {
