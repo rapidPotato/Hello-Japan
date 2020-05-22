@@ -8,7 +8,7 @@
       <tab name="Health">
         <CoronaDisplay />
       </tab>
-      <tab name="Restaurant">
+      <tab name="Restaurants">
         <RestaurantDisplay />
       </tab>
       <tab name="Quote">
