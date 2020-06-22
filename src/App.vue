@@ -33,41 +33,39 @@ export default {
     MapDisplay,
     SideDisplay,
     PageTitle,
-    Clock,
+    Clock
   },
   data() {
     return {
-      // If you update this please update data/cityLocations.json
       location: {
         Tokyo: {
           lon: 139.6503,
-          lat: 35.6762,
+          lat: 35.6762
         },
         Osaka: {
           lon: 135.5023,
-          lat: 34.6937,
+          lat: 34.6937
         },
         Naha: {
           lon: 127.679,
-          lat: 26.2126,
+          lat: 26.2126
         },
         Sendai: {
           lon: 140.8694,
-          lat: 38.2682,
+          lat: 38.2682
         },
         Fukuoka: {
           lon: 130.4017,
-          lat: 33.5902,
+          lat: 33.5902
         },
         Sapporo: {
           lat: 43.0618,
-          lon: 141.3545,
-        },
+          lon: 141.3545
+        }
       },
       markers: [],
       places: [],
-      // this if for restaurant data
-      restaurantsInfo: {},
+      restaurantsInfo: {}
     };
   },
   methods: {
@@ -77,14 +75,13 @@ export default {
         {
           headers: {
             "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-          },
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
+          }
         }
       );
 
       const actualDataObject = response.data.data[0];
 
-      // pull each of the responses key's value into the ActualDataObject
       this.location[actualDataObject.city_name].weather =
         actualDataObject.weather;
       this.location[actualDataObject.city_name].weather.icon = `/icons/${
@@ -114,15 +111,14 @@ export default {
         actualDataObject.app_temp;
     },
 
-    // get restaruant info
     async getRestaurantsInfo(city, cityID) {
       let response = await axios.get(
         `https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=1&currency=USD&lang=en_US&location_id=${cityID}`,
         {
           headers: {
             "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-          },
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
+          }
         }
       );
       const result = {};
@@ -136,15 +132,14 @@ export default {
       }
     },
 
-    // get corona info
     async getCoronaInfo() {
       let response = await axios.get(
         "https://coronavirus-map.p.rapidapi.com/v1/summary/region?region=japan",
         {
           headers: {
             "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
-            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-          },
+            "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
+          }
         }
       );
       this.info = response.data.data;
@@ -152,12 +147,12 @@ export default {
 
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon,
+        lng: newLon
       };
 
       this.markers.push({ position: marker, icon: image, cityName: cityName });
@@ -169,10 +164,10 @@ export default {
       return await axios.get("https://quotes21.p.rapidapi.com/quote", {
         headers: {
           "x-rapidapi-host": "quotes21.p.rapidapi.com",
-          "x-rapidapi-key": process.env.VUE_APP_RAPIKEY,
-        },
+          "x-rapidapi-key": process.env.VUE_APP_RAPIKEY
+        }
       });
-    },
+    }
   },
   created: async function() {
     const quote = await this.getQuote();
@@ -194,12 +189,12 @@ export default {
       this.location.Sapporo.lat
     );
     await this.$store.commit("updateInitialWeather", this.location);
-    this.$store.commit("updateWeather",this.location['Tokyo'])
+    this.$store.commit("updateWeather", this.location["Tokyo"]);
 
     for (const city of cityData["locations"]) {
       let weatherIcon =
-       process.env.VUE_APP_SITE_URL +
-      this.$store.state.initialWeather[city.name]["weather"]["icon"];
+        process.env.VUE_APP_SITE_URL +
+        this.$store.state.initialWeather[city.name]["weather"]["icon"];
       this.addMarkerByLatLon(city.lat, city.lon, weatherIcon, city.name);
     }
     // fetch corona info
@@ -217,7 +212,7 @@ export default {
       "updateCurrentRestaurantInfo",
       this.restaurantsInfo["Tokyo"]
     );
-  },
+  }
 };
 </script>
 
