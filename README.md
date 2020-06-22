@@ -36,7 +36,7 @@ Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that di
  yarn serve
 ```
 
-## **Authors**
+## **✏️ Authors**
 - [Riku Kawano](https://github.com/rikukawano)
 - [Polly Sutcliffe](https://github.com/pollyj)
 - [Chip Crawford](https://github.com/cwcraw)
