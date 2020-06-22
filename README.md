@@ -36,5 +36,11 @@ Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that di
  yarn serve
 ```
 
+## **Authors**
+- [Riku Kawano](https://github.com/rikukawano)
+- [Polly Sutcliffe](https://github.com/pollyj)
+- [Chip Crawford](https://github.com/cwcraw)
+- [Yuya Harada](https://github.com/yuya-h-29)
+- [Zowie Min](https://github.com/Zowie0122)
 
 ###### Made with ♥️ by rapidPotato
