@@ -2,33 +2,23 @@
   <div>
     <div class="row">
       <div class="col-12">
-      <!-- <h5>Search and add a pin</h5>
-      <label>
-        <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
-        <button @click="addMarkerFromSearch">Add</button>
-      </label> -->
-    <br />
-    <gmap-map
-      :center="center"
-      :zoom="5"
-      style="width:100%;  height: 500px;"
-      :options="options"
-    >
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in this.$store.state.markers"
-        :position="m.position"
-        :icon="{
+        <br />
+        <gmap-map :center="center" :zoom="5" style="width:100%;  height: 500px;" :options="options">
+          <gmap-marker
+            :key="index"
+            v-for="(m, index) in this.$store.state.markers"
+            :position="m.position"
+            :icon="{
           url: m.icon.url,
           anchor: anchor,
           origin: origin,
           scaledSize: scaledSize,
           size: size,
         }"
-        @click="(center = m.position), updateCity(m.cityName)"
-      ></gmap-marker>
-    </gmap-map>
-    </div>
+            @click="(center = m.position), updateCity(m.cityName)"
+          ></gmap-marker>
+        </gmap-map>
+      </div>
     </div>
   </div>
 </template>
@@ -58,17 +48,14 @@ export default {
         Lightning:
           "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-lightning.svg",
         Clouds:
-          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg",
+          "https://hellojapanapp-cc.herokuapp.com/icons/30x30/wi-day-cloudy.svg"
       },
       options: {
-        styles: mapStyles,
-      },
+        styles: mapStyles
+      }
     };
   },
 
-  mounted() {
-    // this.geolocate();
-  },
   methods: {
     setPlace(place) {
       this.currentPlace = place;
@@ -82,12 +69,12 @@ export default {
     },
     addMarkerByLatLon(newLat, newLon, weatherURL, cityName) {
       let image = {
-        url: weatherURL,
+        url: weatherURL
       };
 
       const marker = {
         lat: newLat,
-        lng: newLon,
+        lng: newLon
       };
       this.markers.push({ position: marker, icon: image, cityName: cityName });
       this.places.push(this.currentPlace);
@@ -97,24 +84,21 @@ export default {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
+          lng: this.currentPlace.geometry.location.lng()
         };
 
-        // look up weather so we can convert it to icon
-        //TODO: should call weather API for weather icon code
         const weatherIcon = cityData.weather.filter(
-          (city) => city.name === this.currentPlace.name
+          city => city.name === this.currentPlace.name
         )[0].mapWeather;
-        //TODO: should use icon code from api to get image
         const weatherURL = this.mapWeatherObj[weatherIcon];
         const image = {
-          url: weatherURL,
+          url: weatherURL
         };
 
         this.markers.push({
           position: marker,
           icon: image,
-          cityName: this.currentPlace.name,
+          cityName: this.currentPlace.name
         });
         this.places.push(this.currentPlace);
         this.center = marker;
@@ -122,14 +106,14 @@ export default {
       }
     },
     geolocate: function() {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

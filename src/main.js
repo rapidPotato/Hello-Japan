@@ -16,10 +16,9 @@ Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_GAPIKEY,
-    libraries: "geometry,drawing,places", // necessary for places input
+    libraries: "geometry,drawing,places",
   },
 });
-
 
 const store = new Vuex.Store({
   state: {
@@ -27,7 +26,6 @@ const store = new Vuex.Store({
     currentWeather: {},
     initialWeather: {},
     coronaInfo: {},
-    // restaurantInfo: {},
     randomQuote: {},
     horoscopeInfo: {},
     currentRestaurantInfo: {},
@@ -54,8 +52,8 @@ const store = new Vuex.Store({
     updateCoronaInfo: (state, coronaInfoObj) => {
       state.coronaInfo = coronaInfoObj;
     },
-    updateRestaurantsInfo: (state, restaruantInfoObj) => {
-      state.initialRestaurantInfo = restaruantInfoObj;
+    updateRestaurantsInfo: (state, restaurantInfoObj) => {
+      state.initialRestaurantInfo = restaurantInfoObj;
     },
     updateCurrentRestaurantInfo: (state, restaurantInfoObj) => {
       state.currentRestaurantInfo = restaurantInfoObj;

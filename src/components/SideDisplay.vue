@@ -1,6 +1,5 @@
 <template>
   <div id="SideDisplay">
-    <!-- <h1> This is the Side Display </h1> -->
     <tabs class="tabs">
       <tab class="single-tab" name="Weather">
         <WeatherDisplay />
@@ -8,7 +7,7 @@
       <tab name="Health">
         <CoronaDisplay />
       </tab>
-      <tab name="Restaurant">
+      <tab name="Restaurants">
         <RestaurantDisplay />
       </tab>
       <tab name="Quote">
