@@ -1,6 +1,6 @@
 # 👋 Hello Japan
 ###### This was made during our time as students at Code Chrysalis
-![Screenshot](https://hellojapanapp-cc.herokuapp.com/images/screenshot.png)
+![Screenshot](public\images\screenshot.png)
 
 
 ### Checkout our app, it's been deployed! 👉 [**Hello Japan**](https://hellojapanapp-cc.herokuapp.com/) 🎊
@@ -16,7 +16,7 @@ Now, wouldn't it be nice 🎶 if we could just open up **one** dashboard that di
 
 **By the way, it looks just as beautiful on mobile! So check it out on your phone too! 👍**
 
-![Homepage](https://hellojapanapp-cc.herokuapp.com/images/gif.gif)
+![Homepage](public\images\gif.gif)
 
 
 ## Steps to Setting Up!
