@@ -3,7 +3,8 @@
 ![Screenshot](public/images/screenshot.png)
 
 
-### Checkout our app, it's been deployed! 👉 [**Hello Japan**](https://hellojapanapp-cc.herokuapp.com/) 👈
+### Checkout our app, it's been deployed! 👉 ~~[**Hello Japan**]~~ 👈
+*removed due to Heroku hosting limitations on no. of projects.
 
 ## **👋 A Little Introduction**
 
